@@ -1,20 +1,20 @@
 from flask import Blueprint
 from flask import request
 from app.controllers.etcController import calcular
-from app.controllers.mainController import main_page
-from app.controllers.mainController import compute_page
-from app.controllers.mainController import test_page
+from app.controllers.mainController import MainController
+
+maincontroller = MainController()
 
 bp = Blueprint('main', __name__)
 
 @bp.route('/')
 def index():
-    return main_page()
+    return maincontroller.main_page()
 
 @bp.route('/compute')
 def compute():
-    return compute_page()
+    return maincontroller.compute_page()
 
 @bp.route('/test', methods=['POST'])
 def test():
-    return test_page(request)
+    return maincontroller.test_page()

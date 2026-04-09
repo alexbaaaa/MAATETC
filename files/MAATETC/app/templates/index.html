@@ -5,9 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docs</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
 </head>
 <body>
-    <h1>Estas en el index.html</h1>
-    <a href="{{url_for('main.compute')}}">Lest start</a>
+    <section class="container-fluid d-flex flex-column justify-content-between">
+        <div>Logo</div>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">ETC</h2>
+                <p class="cardtext">TExto prueba</p>
+                <a href="{{url_for('main.compute')}}" class="btn btn-primary">Lest start</a>
+            </div>
+        </div>
+        <div class="align-items-end">Designed by alexba</div>
+    </section>
+
+<!--     <h1>Estas en el index.html</h1>
+    <a href="{{url_for('main.compute')}}">Lest start</a> -->
 </body>
 </html>
