@@ -10,4 +10,4 @@ def index():
 
 @app.route('/doc')
 def doc():
-    return render_template('sidebar.html')
+    return render_template('doc.html')

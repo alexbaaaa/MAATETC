@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+</head>
+<body>
+    <form action="{{url_for('main.test')}}" method="POST">
+        <label for="test">Label de prueba</label>
+        <input type="text" id="test" name="text" placeholder="escribe un nombre">
+        <label for="test2">Label de prueba 2</label>
+        <input type="text" id="test2" name="text2" placeholder="un segundo nombre">
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
