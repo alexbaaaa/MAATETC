@@ -15,6 +15,12 @@ def index():
 def compute():
     return maincontroller.compute_page()
 
+
+# Rutas de pruebas
 @bp.route('/test', methods=['POST'])
 def test():
     return maincontroller.test_page()
+
+@bp.route('/testAjax', methods=['POST'])
+def ajax():
+    return maincontroller.test_ajax()

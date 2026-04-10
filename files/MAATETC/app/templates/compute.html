@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documents</title>
+    <title>TEST</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
 </head>
 <body>
+    <h1>Testeo de funcionalidad</h1>
+    <h1>form tradicional</h1>
     <form action="{{url_for('main.test')}}" method="POST">
         <label for="test">Label de prueba</label>
         <input type="text" id="test" name="text" placeholder="escribe un nombre">
@@ -14,5 +16,14 @@
         <input type="text" id="test2" name="text2" placeholder="un segundo nombre">
         <button type="submit">Enviar</button>
     </form>
+    <h1>AJAX form</h1>
+    <form action="" method="" id="ajaxForm">
+        <button type="submit" disabled style="display: none;" aria-hidden="true"></button>
+        <label for="ajax">Ajax field</label>
+        <input type="text" id="ajax" name="ajaxField" placeholder="Dime un nombre">
+    </form>
+    <h1 id="ajaxButton" class="btn btn-primary">Enviar</h1>
+    <h3>Tu nombre es: <span id="ajaxResult"></span></h3>
+    <script type="module" src="{{url_for('static', filename='js/index.js')}}"></script>
 </body>
 </html>

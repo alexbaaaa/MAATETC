@@ -15,4 +15,8 @@ class MainController:
         return render_template('compute.html')
     # Test page
     def test_page(self):
-        return render_template('test.html',names = request.form)
+        return render_template('test.html', names = request.form)
+    # Test ajax
+    def test_ajax(self):
+        data = request.get_json()
+        return jsonify(data)
