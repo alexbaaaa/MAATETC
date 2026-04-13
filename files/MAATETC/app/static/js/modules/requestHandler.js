@@ -1,0 +1,25 @@
+class RequestHandler {
+    constructor (dataJson, printdata) {
+        this.printData = printdata;
+        this.init(dataJson);    
+    }
+
+    init(dataJson) {
+        this.getJsonFromController(dataJson);
+    }
+
+    getJsonFromController(dataJson) {
+        fetch('/testAjax', {
+            "method": 'POST',
+            "body": JSON.stringify(dataJson),
+            "headers": {
+                "content-Type": "application/json"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            this.printData(data);
+        })
+    }
+}
+export {RequestHandler}

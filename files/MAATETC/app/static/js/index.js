@@ -1,23 +1,25 @@
-console.log("Estoy funcionando")
+import {FormatData} from './modules/formatData.js'
+import {TextLecture} from './modules/textLecture.js'
+import {UiController} from './modules/uiController.js'
 
-const FORM = document.getElementById('ajaxForm')
-const BUTTON = document.getElementById('ajaxButton')
-const TEXT = document.getElementById('ajaxResult')
-const TEXTINPUT = document.getElementById('ajax')
+let button = document.getElementById('ajaxButton');
+let data = document.querySelectorAll('.inputAjax');
+let drogZone = document.getElementById('dropZone');
 
-/** evento de prueba para funcionalidad AJAX */
-BUTTON.addEventListener("click", (e) => {
-    let data = {data: TEXTINPUT.value};
-    fetch('/testAjax', {
-        "method": 'POST',
-        "body": JSON.stringify(data),
-        "headers": {
-            "content-Type": "application/json"
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        TEXT.innerHTML = data.data;
-    }) 
+let uic = new UiController();
+let fdata = new FormatData(uic);
+let tlecture = new TextLecture(uic.prueba1);
+
+// Quitamos el evento por defecto del buscador
+['dragover', 'drop'].forEach(eventName => {
+    document.addEventListener(eventName, e => e.preventDefault());
+});
+
+button.addEventListener("click", (e) => {
+   fdata.init(data);
 })
 
+// Pruebas de Drag an Drop
+drogZone.addEventListener('drop', (e) => {
+    tlecture.initLecture(e.dataTransfer.files);
+})

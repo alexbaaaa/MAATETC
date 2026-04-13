@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEST</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
 </head>
 <body>
@@ -19,11 +20,18 @@
     <h1>AJAX form</h1>
     <form action="" method="" id="ajaxForm">
         <button type="submit" disabled style="display: none;" aria-hidden="true"></button>
-        <label for="ajax">Ajax field</label>
-        <input type="text" id="ajax" name="ajaxField" placeholder="Dime un nombre">
+        <input class="inputAjax" type="text" id="ajax1" name="N1" placeholder="Nombre 1">
+        <input class="inputAjax" type="text" id="ajax2" name="N2" placeholder="Nombre 2">
+        <input class="inputAjax" type="text" id="ajax3" name="N3" placeholder="Nombre 3">
     </form>
     <h1 id="ajaxButton" class="btn btn-primary">Enviar</h1>
-    <h3>Tu nombre es: <span id="ajaxResult"></span></h3>
+    <h3>Nombre 1: <span id="N1" class="textResult"></span></h3>
+    <h3>Nombre 2: <span id="N2" class="textResult"></span></h3>
+    <h3>Nombre 3: <span id="N3" class="textResult"></span></h3>
+    <div class="dropZone" id="dropZone">
+        <h1>Drop any files here</h1>
+    </div>
+    <h1 id="final"></h1>
     <script type="module" src="{{url_for('static', filename='js/index.js')}}"></script>
 </body>
 </html>
