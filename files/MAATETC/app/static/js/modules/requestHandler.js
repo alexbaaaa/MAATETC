@@ -9,7 +9,7 @@ class RequestHandler {
     }
 
     getJsonFromController(dataJson) {
-        fetch('/testAjax', {
+        fetch('/etc', {
             "method": 'POST',
             "body": JSON.stringify(dataJson),
             "headers": {

@@ -1,6 +1,11 @@
 from flask import request, jsonify
+from app.services.handlerETC import HandlerETC
+from dataclasses import dataclass
 
-def calcular():
-    data = request.json
-    resultado = calcular_logica(data)
-    return jsonify(resultado)
+# This decorate is provisional 
+@dataclass
+class EtcController:
+    def getJSON(self):
+        handlerETC = HandlerETC()
+
+        return handlerETC.getElement()

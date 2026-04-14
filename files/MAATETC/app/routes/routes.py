@@ -1,9 +1,10 @@
 from flask import Blueprint
 from flask import request
-from app.controllers.etcController import calcular
+from app.controllers.etcController import getJSON
 from app.controllers.mainController import MainController
 
 maincontroller = MainController()
+etcController = EtcController()
 
 bp = Blueprint('main', __name__)
 
@@ -14,6 +15,11 @@ def index():
 @bp.route('/compute')
 def compute():
     return maincontroller.compute_page()
+
+@bp.route('/etc')
+def etc():
+    return etcController.getJSON()
+
 
 
 # Rutas de pruebas
