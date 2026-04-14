@@ -8,7 +8,7 @@ let drogZone = document.getElementById('dropZone');
 
 let uic = new UiController();
 let fdata = new FormatData(uic);
-let tlecture = new TextLecture(uic.prueba1);
+let tlecture = new TextLecture(uic.fillFields);
 
 // Quitamos el evento por defecto del buscador
 ['dragover', 'drop'].forEach(eventName => {

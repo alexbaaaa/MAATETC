@@ -20,6 +20,7 @@ class FormatData {
     }
 
     #structuringData(data) {
+        console.log(data);
         let dataJson = {}
         data.forEach(element => {
             dataJson = {

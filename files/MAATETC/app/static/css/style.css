@@ -10,4 +10,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all .4s ease-in-out;
+}
+.dropZone:focus {
+    opacity: .5;
+}
+
+.formAjax {
+    width: fit-content;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
 }
