@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*----------Index-------------*/
+.myCard {
+    background-color: rgb(112, 175, 220);
+}
+
+/*---------Compute-------------*/
+
+.dropZone {
+    height: 200px;
+    width: 400px;
+    background-color: beige;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .4s ease-in-out;
+}
+.dropZone:focus {
+    opacity: .5;
+}
+
+.formAjax {
+    width: fit-content;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+}
+
+.hero {
+    background-color: beige;
+}

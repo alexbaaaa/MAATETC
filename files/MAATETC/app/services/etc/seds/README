@@ -1,0 +1,25 @@
+
+-----------------------------------------------------------
+
+https://etc.stsci.edu/etcstatic/users_guide/1_ref_2_spectral_distribution.html#nebulae-representative-models
+
+Orion Nebula 	orion_001.fits
+Orion Nebula II 	orion_smooth_001.fits ---> renamed as orion.fits
+Planetary Nebula (NGC 7009) including point source 	pn_smooth_001.fits ---> renamed as pn.fits
+Planetary Nebula Extended Emission [1] 	pn_nebula_only_smooth.fits
+
+
+-----------------------------------------------------------
+
+Dr Mattia Bulla @ 20210514
+I attach KN spectra for two different models (with different EoS), both at 0.5 days after the merger. 
+Run1 is much brighter and bluer than run2, and more similar to the GW170817 kilonova. 
+
+# Column 1: Wavelength (micron) 
+# Column 2: Flux at 10 pc for an equatorial viewing angle (erg s-1 cm-2 A-1) 
+# Column 3: Flux at 10 pc for a polar viewing angle (erg s-1 cm-2 A-1) 
+
+KN_run1.txt
+KN_run2.txt
+
+-----------------------------------------------------------
