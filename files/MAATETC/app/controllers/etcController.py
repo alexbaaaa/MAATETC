@@ -6,6 +6,5 @@ from dataclasses import dataclass
 @dataclass
 class EtcController:
     def getJSON(self):
-        handlerETC = HandlerETC()
-
-        return handlerETC.getElement()
+        data = HandlerETC.runEtc(request.get_json())
+        return jsonify(data)

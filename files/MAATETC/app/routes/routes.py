@@ -1,6 +1,6 @@
 from flask import Blueprint
 from flask import request
-from app.controllers.etcController import getJSON
+from app.controllers.etcController import EtcController
 from app.controllers.mainController import MainController
 
 maincontroller = MainController()
@@ -16,7 +16,7 @@ def index():
 def compute():
     return maincontroller.compute_page()
 
-@bp.route('/etc')
+@bp.route('/etc', methods=['POST'])
 def etc():
     return etcController.getJSON()
 

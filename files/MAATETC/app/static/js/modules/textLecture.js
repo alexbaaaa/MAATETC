@@ -7,7 +7,7 @@ export class TextLecture {
     }
     initLecture(file){
         this.file = file;
-        console.log(this.getFileContentJSON(this.file)); 
+        this.getFileContentJSON(this.file); 
     }
 
     getFileContentJSON(file) {

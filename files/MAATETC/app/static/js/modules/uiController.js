@@ -4,16 +4,11 @@ export class UiController {
     }
     // printDataResult?? metodo pintar graficas futuras
     printData(data) {
-        let textresult = document.querySelectorAll('.textResult');
-        let dataArray = Object.entries(data);        
-        // Provisional ajustar mas adelante
-/*         textresult.forEach( element => {
-            let result = dataArray.find((data) => data[0] == element.id);
-            let htmlObject = document.getElementById(element.id);
-            htmlObject.innerHTML = result[1];
-            console.log(result);
-        })
- */
+        let img = document.getElementById('imgGrafica');
+        let text = document.getElementById('text');
+        text.innerHTML = data['text']
+        img.src = 'data:image/png;base64,' + data['imagen']
+        console.log("Datos en el ui: ",data['imagen'])
     }
     /**
      * Method para rellenar campos a traves de un .txt
@@ -24,7 +19,6 @@ export class UiController {
         inputAjax.forEach( element => {
             let result = dataJsonArray.find((data) => data[0] == element.id);
             element.value = result[1];
-            console.log(result[0] + ' = ' + element.value);
         }) 
 
     }

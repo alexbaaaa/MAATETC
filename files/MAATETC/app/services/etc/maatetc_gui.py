@@ -1,16 +1,13 @@
-#-------------------------------
-from app.services.handlerETC import HandlerETC
-handlerETC = HandlerETC()
-#--------------------
-
-
 #!/usr/bin/env python3
 import matplotlib
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-import PySimpleGUI as sg # PySimpleGUIWeb PySimpleGUI
-import io
-import os
-matplotlib.use('TkAgg')
+#----- IMPORTANTE PARA WEB ---
+matplotlib.use('Agg')
+#---------------
+# from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+# import PySimpleGUI as sg # PySimpleGUIWeb PySimpleGUI
+# import io
+# import os
+#matplotlib.use('TkAgg')
 
 #--------------------------------------------------------------------
 
@@ -24,6 +21,7 @@ from scipy import interpolate
 import sys, getopt
 import pathlib
 import random
+import os
 
 #--------------------------------------------------------------------
 mpl.rcParams['image.interpolation'] = 'nearest'
@@ -39,14 +37,19 @@ hplanck = 6.626068e-27 # cm2 g / s  ==  erg s
 
 telearea = 73e4 # GTC effective collecting area in cm2
 
-maatetcdir = str(pathlib.Path('maatetc_gui.py').parent.absolute()) + "/"
-print(maatetcdir)
+# ----- Cambio de la ruta ------
+
+maatetcdir = str( os.getcwd() + "/app/services/etc/" )
+
+# maatetcdir = str(pathlib.Path('maatetc_gui.py').parent.absolute()) + "/"
+# print(maatetcdir)
 
 
 #--------------------------------------------------------------------
 
-sg.theme('SystemDefault')
-sg.set_options(element_padding=(0, 0))
+# Not for WEB
+# sg.theme('SystemDefault')
+# sg.set_options(element_padding=(0, 0))
 
 
 def draw_figure(element, figure):
@@ -90,7 +93,7 @@ def extinction(wv,am):
   extin0 = np.array([0.4554,0.2175,0.1020,0.0575,0.0157,0.0087,0.0087]) # WEAVE
   rep = interpolate.interp1d( np.array([3600,4300,5500,6500,8200,9500,10000]) , extin0 )
   newval = rep(wv)
-  oops = 10.**(-0.4*np.float(am)*newval)
+  oops = 10.**(-0.4*float(am)*newval)
   return oops
 
 #--------------------------------------------------------------------
@@ -223,7 +226,8 @@ def old2newfac(wv):
   # wavelength and efficiency of MAAT Winlight 20211011 
   # 2S4D with spherical slit mirrors and 3S3D with toroidal slit mirrors
   
-  wifu, qifu1,qifu2,qifu3 = np.loadtxt('efficiency/MAAT_trans_Winlight_20211011_1S5D_2S4D_3S3D.txt',unpack=True)
+  # I have added the variable maatetcdir
+  wifu, qifu1,qifu2,qifu3 = np.loadtxt(maatetcdir + 'efficiency/MAAT_trans_Winlight_20211011_1S5D_2S4D_3S3D.txt',unpack=True)
   qifu = qifu1 # choose optimal transmission case as default
   qifui = interpolate.interp1d(wifu,qifu)(wv)
 
@@ -649,7 +653,7 @@ def run_etc(values,text_elem,image_element):
     ax1.set_xlabel(r'wavelength ($\mathrm{\AA}$)')
 
     #By Alejandro -----------
-    handlerETC.getElement(image_element, fig)
+    return fig, text_elem
     #------------
 
     # This method doesn't work for the web
@@ -748,7 +752,7 @@ def gui():
 
 #--------------------------------------------------------------------
 # Run main
-
-gui()
+# 
+# gui()
 
 

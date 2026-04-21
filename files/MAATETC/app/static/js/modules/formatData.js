@@ -20,12 +20,12 @@ class FormatData {
     }
 
     #structuringData(data) {
-        console.log(data);
         let dataJson = {}
         data.forEach(element => {
+            if (element.name === 'wvinflux') element.name = 'refwv' 
             dataJson = {
                 ...dataJson,
-                [element.name]: element.value
+                [element.name]: element.value.trim() === "" ? "" : element.value
             }
         });
         return dataJson;

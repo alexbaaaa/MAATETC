@@ -8,16 +8,20 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
 </head>
 <body>
-    <section class="container-fluid d-flex flex-column justify-content-between">
-        <div>Logo</div>
-        <div class="card">
+    <section class="container-fluid d-flex flex-column justify-content-between align-items-center vh-100 vw-100">
+        <div class="align-self-start">Logo MAAT ETC</div>
+        <div class="card shadow w-50 h-auto myCard">
             <div class="card-body">
-                <h2 class="card-title">ETC</h2>
-                <p class="cardtext">TExto prueba</p>
-                <a href="{{url_for('main.compute')}}" class="btn btn-primary">Lest start</a>
+                <h2 class="card-title">ETC MAAT</h2>
+                <p class="cardtext text-center w-75 m-auto">A simple and efficient tool to estimate exposure parameters for astronomical observations with <strong>OSIRIS MAAT</strong>. Choose between two calculation modes: <strong>Signal-to-Noise (S/N)</strong>  or <strong> Exposure Time</strong>, depending on your needs.
+                                   <br> Easily import data from a text file to speed up your workflow and streamline observation planning.</p>
+                <div class="d-flex justify-content-around mt-5">
+                    <a href="#" class="btn btn-info">User guide</a>
+                    <a href="{{url_for('main.compute')}}" class="btn btn-primary">Lest start</a>
+                </div>
             </div>
         </div>
-        <div class="align-items-end">Designed by alexba</div>
+        <div class="align-self-end">CSIC IAA</div>
     </section>
 
 </body>

@@ -3,6 +3,14 @@
     padding: 0;
 }
 
+
+/*----------Index-------------*/
+.myCard {
+    background-color: rgb(112, 175, 220);
+}
+
+/*---------Compute-------------*/
+
 .dropZone {
     height: 200px;
     width: 400px;
@@ -22,4 +30,8 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 
+}
+
+.hero {
+    background-color: beige;
 }

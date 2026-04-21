@@ -5,6 +5,7 @@ class RequestHandler {
     }
 
     init(dataJson) {
+        //console.log("Prueba",dataJson)
         this.getJsonFromController(dataJson);
     }
 

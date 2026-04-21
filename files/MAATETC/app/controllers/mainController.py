@@ -13,6 +13,7 @@ class MainController:
     # compute page
     def compute_page(self):
         return render_template('compute.html')
+    
     # Test page
     def test_page(self):
         return render_template('test.html', names = request.form)
