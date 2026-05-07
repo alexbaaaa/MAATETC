@@ -1,7 +1,7 @@
 from flask import request, jsonify
 import io, base64
 from dataclasses import dataclass
-from app.services.etc.maatetc_gui import run_etc
+from app.services.etc.maatetc_gui import run_etc, getgrating
 
 @dataclass
 class HandlerETC:
@@ -29,6 +29,20 @@ class HandlerETC:
             "text" : text_elem.value
         }
         return resultJson
+    @staticmethod
+    def getGrating():
+        gratingsArrays = ['R300B','R300R','R500B','R500R','R1000B','R1000R','R2000B','R2500U','R2500V','R2500R','R2500I']
+        gratingsArrayJson = []
+        for name in gratingsArrays:
+            gratings = getgrating(name)
+            json = {
+                " name" : name, 
+                'grating' : [gratings[0][0], gratings[0][-1]]
+            }
+            gratingsArrayJson.append(json)
+        return gratingsArrayJson
+
+    
     
 #Esta clase la estrere mas adelante
 class Dummy:

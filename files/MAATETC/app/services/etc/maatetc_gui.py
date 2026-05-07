@@ -22,6 +22,8 @@ import sys, getopt
 import pathlib
 import random
 import os
+from astropy.modeling.physical_models import BlackBody
+from astropy import units as u
 
 #--------------------------------------------------------------------
 mpl.rcParams['image.interpolation'] = 'nearest'
@@ -164,10 +166,8 @@ def extend(x,y,wv):
 def getsed(sedtemplate,redz):  
   if sedtemplate=='ones' : 
     flam0 = np.ones(len(wv)) # erg/cm2/s/A , normalized spectrum to be scaled with fluxval0
-  elif sedtemplate[:2]=='blackbody' :
-    temp = 6000. 
-    from astropy.modeling.physical_models import BlackBody
-    from astropy import units as u
+  elif sedtemplate.split()[0]=='blackbody' :
+    temp = float(sedtemplate.split()[1]) 
     bt = BlackBody(temp*u.K, scale=1.*u.Unit('erg / (cm2 s AA sr)'))
     flam0 = bt(wv * u.AA).value
   else :

@@ -1,16 +1,16 @@
+import {Validation} from './validation.js'
 class RequestHandler {
     constructor (dataJson, printdata) {
         this.printData = printdata;
-        this.init(dataJson);    
+        this.init(dataJson);
     }
 
     init(dataJson) {
-        //console.log("Prueba",dataJson)
         this.getJsonFromController(dataJson);
     }
 
-    getJsonFromController(dataJson) {
-        fetch('/etc', {
+    async getJsonFromController(dataJson) {
+        await fetch('/etc', {
             "method": 'POST',
             "body": JSON.stringify(dataJson),
             "headers": {
@@ -20,6 +20,19 @@ class RequestHandler {
         .then(response => response.json())
         .then(data => {
             this.printData(data);
+        })
+    }
+
+    static getGratingsJson() {
+        fetch('/gratings', {
+            "method": 'GET',
+            "headers": {
+                "content-Type": "application/json"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            window.GRATINGS = data;
         })
     }
 }

@@ -1,5 +1,4 @@
 import {RequestHandler} from './requestHandler.js'
-
 class FormatData {
     constructor (uic) {
         this.uic = uic;
@@ -9,24 +8,28 @@ class FormatData {
         new RequestHandler(this.#getData(data), this.uic.printData);
     }
 
-    /** modificar para dos entradas
-     *  1 Entrada desde los fields
-     *  @return structuringData()
-     *  2 Entrada desde texto
-     *  @return 
-    */ 
     #getData(data) {
+        // validacion aqui si o si antes de mandar los datos al request
         return this.#structuringData(data);
     }
 
     #structuringData(data) {
-        let dataJson = {}
+        console.log(data)
+        let dataJson = {};
+        let dataValue;
         data.forEach(element => {
-            if (element.name === 'wvinflux') element.name = 'refwv' 
+            dataValue = element.value.trim() === "" ? "" : element.value ; 
+            if (element.name === 'wvinflux') element.name = 'refwv';
+            if (element.name === 'sedtemplate' & element.value != 'ones') {
+                let sedtemplate  = document.getElementById('sedtemplate_'+element.value);
+                (element.value == 'blackbody')? dataValue+= ' ' + sedtemplate.value :  dataValue+= '_' + sedtemplate.value 
+            }
             dataJson = {
                 ...dataJson,
-                [element.name]: element.value.trim() === "" ? "" : element.value
+                [element.name]: dataValue
             }
+            
+            
         });
         return dataJson;
     }

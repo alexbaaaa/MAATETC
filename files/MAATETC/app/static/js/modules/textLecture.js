@@ -1,13 +1,9 @@
-// Import provisional para pruebas 
-// Cambiar los lugares donde se ejecuta
 export class TextLecture {
     constructor (fillFields) {
-        this.file = null;
         this.fillFields = fillFields;
     }
     initLecture(file){
-        this.file = file;
-        this.getFileContentJSON(this.file); 
+        this.getFileContentJSON(file); 
     }
 
     getFileContentJSON(file) {
@@ -16,10 +12,14 @@ export class TextLecture {
             // Implementar mensaje en html
             console.log('formato de archivo invalido');
         }else {
-            this.readFileContent(file, (content)=> {
-                this.fillFields(content); // este metodo rellena los fields del template
-                jsonContent = content 
-            });
+            try {
+                this.readFileContent(file, (content)=> {
+                    this.fillFields(content); // este metodo rellena los fields del template
+                    jsonContent = content 
+                });               
+            }catch(e){
+                console.log('Error al leer el texto: '+ e);
+            }
         }
         return jsonContent;
     }

@@ -20,6 +20,10 @@ def compute():
 def etc():
     return etcController.getJSON()
 
+@bp.route('/gratings', methods=['GET'])
+def gratings():
+    return etcController.getGratings()
+
 
 
 # Rutas de pruebas
