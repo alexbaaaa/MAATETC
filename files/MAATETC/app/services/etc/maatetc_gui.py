@@ -623,7 +623,18 @@ def run_etc(values,text_elem,image_element):
     fig = matplotlib.figure.Figure(figsize=(7, 7), dpi=100)
     ax=fig.add_subplot(211)
     if (compute=='SN') : 
-      if fluxtype=='continuum': ax.plot(wv,SN,'k-',lw=0.5)
+      if fluxtype=='continuum': 
+        ax.plot(wv, SN, 'k-', lw=0.5)
+
+        # Obtener índice de la longitud de onda más cercana a refwv
+        idx_ref = np.abs(wv - refwv).argmin()
+
+        # Obtener valor Y en esa longitud de onda
+        y_ref = SN[idx_ref]
+
+        # Limitar eje Y al doble del valor de referencia
+        ax.set_ylim(0, y_ref * 2)
+
       if fluxtype=='emline':
         ax.plot([wv[wvind],wv[wvind]],[0,SN[wvind]],'-',lw=1)
         ax.axhline(0)
@@ -633,7 +644,18 @@ def run_etc(values,text_elem,image_element):
 
 
     if (compute=='texpo') : 
-      if fluxtype=='continuum': ax.plot(wv,Texpo,'k-',lw=0.5)
+      if fluxtype=='continuum': 
+          ax.plot(wv, Texpo, 'k-', lw=0.5)
+
+          # Obtener índice de la longitud de onda más cercana a refwv
+          idx_ref = np.abs(wv - refwv).argmin()
+
+          # Obtener valor Y en esa longitud de onda
+          y_ref = Texpo[idx_ref]
+
+          # Limitar eje Y al doble del valor de referencia
+          ax.set_ylim(0, y_ref * 2)
+
       if fluxtype=='emline':
         ax.plot([wv[wvind],wv[wvind]],[0,Texpo[wvind]],'-',lw=1)
         ax.axhline(0)

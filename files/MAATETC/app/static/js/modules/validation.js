@@ -7,10 +7,11 @@ import {RequestHandler} from './requestHandler.js'
 export class Validation {
     constructor () {
         this.validationJson = validationJSON
+        // Special values
         this.gratings = RequestHandler.getGratingsJson()
     }
 
-    IsValid (data) {
+    static isValid (data) {
         let isvalid
         this.validationJson.forEach((object) => {
             let input = Array.from(data).find((value) => value.name == object.name)
