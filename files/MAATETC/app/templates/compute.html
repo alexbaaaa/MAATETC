@@ -9,169 +9,206 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
 </head>
 <body>
-    <section class="">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Eleventh navbar example">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="{{url_for('main.index')}}">ETC MAAT</a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarsExample09"
-              aria-controls="navbarsExample09"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarsExample09">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="{{url_for('main.index')}}">User guide</a></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <div class="d-flex mt-3">
-            <div class="w-50 card shadow m-2" id="warningtarget">
-                <div class="alert alert-warning m-2" role="alert" id="warning" style="display: none;">
-                </div> 
-                <div class="">
-                    <form action="" class="formAjax p-3">
-                        <button type="submit" disabled style="display: none;" aria-hidden="true"></button>
-                        <div class="">
-                            <label for="compute" class="">Compute mode</label>
-                            <select name="compute" id="compute" class="inputAjax">
-                                <option value="SN" selected>S/N</option>
-                                <option value="texpo">Texpo</option>
-                            </select>
+    <div class="container-fluid py-2">
+        <div class="row g-4">
+            <!--NAV-->
+            <nav class="navbar navbar-expand-lg bg-body-tertiary rounded">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="{{url_for('main.index')}}">ETC MAAT</a>
+                    <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarsExample09"
+                    aria-controls="navbarsExample09"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                    >
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarsExample09">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="{{url_for('main.index')}}">User guide</a></li>
+                    </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- FORMULARIO -->
+            <div class="col-12 col-lg-6">
+                <div class="card shadow-lg border-0 rounded-4 h-100" id="warningtarget">
+
+                    <div class="alert alert-warning m-3" role="alert" id="warning" style="display: none;">
+                    </div>
+
+                    <div class="card-body">
+
+                        <form action="" class="formAjax row">
+
+                            <button type="submit" disabled style="display: none;" aria-hidden="true"></button>
+                            <div class="row g-3 col-12">
+
+                                <div class="col-12 col-md-6 mb-3">
+                                    <label for="compute" class="form-label">Compute mode</label>
+                                    <select name="compute" id="compute" class="inputAjax form-select">
+                                        <option value="SN" selected>S/N</option>
+                                        <option value="texpo">Texpo</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-12 col-md-6 mb-3">
+                                    <label for="texpoSN" class="form-label">
+                                        Requested <span id="computeLabel">SN</span>
+                                    </label>
+                                    <input class="inputAjax form-control" type="number" id="texpoSN" name="texpoSN">
+                                </div>
+
+                                <div class="col-12 col-md-6 mb-3">
+                                    <label for="fluxtype" class="form-label">Flux type</label>
+                                    <select name="fluxtype" id="fluxtype" class="inputAjax form-select">
+                                        <option value="continuum" selected>continuum</option>
+                                        <option value="emline">emline</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-12 col-md-6 mb-3">
+                                    <label for="fluxval" class="form-label">Flux value</label>
+                                    <input class="inputAjax form-control" type="number" id="fluxval" name="fluxval">
+                                </div>
+
+                                <div class="col-12 col-md-6 mb-3">
+                                    <label for="wvinflux" class="form-label">Reference wavelength</label>
+                                    <input class="inputAjax form-control" type="text" id="wvinflux" name="wvinflux" required>
+                                </div>
+
+                                <div class="col-12 col-md-6 mb-3">
+                                    <label for="grating" class="form-label">Grating</label>
+                                    <select name="grating" id="grating" class="inputAjax form-select">
+                                        <option value="R300B" selected>R300B</option>
+                                        <option value="R300R">R300R</option>
+                                        <option value="R500B">R500B</option>
+                                        <option value="R500R">R500R</option>
+                                        <option value="R1000B">R1000B</option>
+                                        <option value="R1000R">R1000R</option>
+                                        <option value="R2000B">R2000B</option>
+                                        <option value="R2500U">R2500U</option>
+                                        <option value="R2500V">R2500V</option>
+                                        <option value="R2500R">R2500R</option>
+                                        <option value="R2500I">R2500I</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-12 mb-3 g-2" id="sedtemplateFather">
+                                    <label for="sedtemplate" class="form-label">SEED templates</label>
+                                    <select name="sedtemplate" id="sedtemplate" class="inputAjax form-select">
+                                        <option value="ones" selected>Ones</option>
+                                        <option value="pickles">Pickles</option>
+                                        <option value="blackbody">Blackbody</option>
+                                    </select>
+                                </div>
+
+                              
+                                <div class="col-12 col-md-6 mb-3">
+                                    <label for="moon" class="form-label">Moon</label>
+                                    <select name="moon" id="moon" class="inputAjax form-select">
+                                        <option value="dark" selected>dark</option>
+                                        <option value="gray">gray</option>
+                                        <option value="grey">grey</option>
+                                        <option value="bright">bright</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-12 col-md-6 mb-3">
+                                    <label for="airmass" class="form-label">Air mass</label>
+                                    <input class="inputAjax form-control" type="text" id="airmass" name="airmass">
+                                </div>
+
+                                <div class="col-12 col-md-6 mb-3">
+                                    <label for="psf" class="form-label">PSF</label>
+                                    <select name="psf" id="psf" class="inputAjax form-select">
+                                        <option value="pointsource" selected>pointsource</option>
+                                        <option value="extended">extended</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-12 col-md-6 mb-3" id="seeingDiv">
+                                    <label for="seeing" class="form-label">Seeing</label>
+                                    <input class="inputAjax form-control" type="number" id="seeing" name="seeing">
+                                </div>
+
+                                <div class="col-12 col-md-6 mb-3" id="areaDiv" style="display: none;">
+                                    <label for="area" class="form-label">Area</label>
+                                    <input class="inputAjax form-control" type="number" id="area" name="area">
+                                </div>
+
+                                <div class="col-12 col-md-6 mb-3">
+                                    <label for="redz" class="form-label">Red shift</label>
+                                    <input class="inputAjax form-control" type="number" id="redz" name="redz">
+                                </div>
+
+                                <div class="col-12 col-md-6 mb-3">
+                                    <label for="breadth" class="form-label">Breadth</label>
+                                    <input class="inputAjax form-control" type="number" id="breadth" name="breadth" value="0">
+                                </div>
+
+                                <div class="col-12 col-md-6 mb-3">
+                                    <label for="fwhmA" class="form-label">FwhmA</label>
+                                    <input class="inputAjax form-control" type="number" id="fwhmA" name="fwhmA">
+                                </div>
+
+                                <div class="col-12 col-md-6 mb-3">
+                                    <label for="toverhd" class="form-label">toverhd</label>
+                                    <input class="inputAjax form-control" type="number" id="toverhd" name="toverhd">
+                                </div>
+
+                            </div>
+                        </form>
+
+                        <div class="mt-4">
+                            <small class="text-muted">
+                                Upload a file to complete the fields
+                            </small>
+
+                            <div class="dropZone mt-2" id="dropZone">
+                                <span class="choose-file-button">Choose files</span>
+                                <span class="file-message" id="fileMessage">
+                                    or drag and drop files here
+                                </span>
+                                <input class="file-input" id="fileUpload" type="file">
+                            </div>
+
+                            <button id="ajaxButton" class="btn btn-primary w-100 py-2 mt-3">
+                                Run ETC
+                            </button>
                         </div>
 
-                        <div class="">
-                            <label for="texpoSN" class="">Requested <span id="computeLabel">SN</span></label>
-                            <input class="inputAjax" type="number" id="texpoSN" name="texpoSN">
-                        </div>
-
-                        <div class="">
-                            <label for="fluxtype">Flux type</label>
-                            <select name="fluxtype" id="fluxtype" class="inputAjax" >
-                                <option value="continuum" selected>continuum</option>
-                                <option value="emline">emline</option>
-                            </select>
-                        </div>
-
-                        <div class="">
-                            <label for="fluxval">Flux value</label>
-                            <input class="inputAjax" type="number" id="fluxval" name="fluxval">
-                        </div>
-                        <div class="alert alert-warning" role="alert" hidden>
-                            This is a warning alert—check it out!
-                        </div>
-                        <div class="form-group">
-                            <label for="wvinflux">Reference wavelength</label>
-                            <input class="inputAjax" type="text" id="wvinflux" name="wvinflux" required> 
-                        </div>
-
-                        <!--Completar el select mas adelante -->
-                        <div class="prueba" id="sedtemplateFather">
-                            <label for="sedtemplate">SEED templates</label>
-                            <select name="sedtemplate" id="sedtemplate" class="inputAjax">
-                                <option value="ones" selected>Ones</option>
-                                <option value="pickles" >Pickles</option>
-                                <option value="blackbody">Blackbody</option>
-                            </select>
-                        </div>
-
-                        <div class="">
-                            <label for="redz">Red shift</label>
-                            <input class="inputAjax" type="number" id="redz" name="redz">
-                        </div>
-
-                        <div class="">
-                            <label for="moon">Moon</label>
-                            <select name="moon" id="moon" class="inputAjax ">
-                                <option value="dark" selected>dark</option>
-                                <option value="gray">gray</option>
-                                <option value="grey">grey</option>
-                                <option value="bright">bright</option>
-                            </select>
-                        </div>
-
-                        <div class="">
-                            <label for="airmass">Air mas</label>
-                            <input class="inputAjax" type="text" id="airmass" name="airmass">
-                        </div>
-
-                        <div class="">
-                            <label for="grating">Grating</label>
-                            <select name="grating" id="grating" class="inputAjax "> 
-                                <option value="R300B" selected>R300B</option> 
-                                <option value="R300R">R300R</option> 
-                                <option value="R500B">R500B</option> 
-                                <option value="R500R">R500R</option> 
-                                <option value="R1000B">R1000B</option> 
-                                <option value="R1000R">R1000R</option> 
-                                <option value="R2000B">R2000B</option> 
-                                <option value="R2500U">R2500U</option> 
-                                <option value="R2500V">R2500V</option> 
-                                <option value="R2500R">R2500R</option> 
-                                <option value="R2500I">R2500I</option> 
-                            </select>
-                        </div>
-
-                        <div class="">
-                            <label for="psf">PSF</label>
-                            <select name="psf" id="psf" class="inputAjax">
-                                <option value="pointsource" selected>pointsource</option>
-                                <option value="extended" >extended</option>
-                            </select>
-                        </div>
-
-                        <div class="" id="seeingDiv">
-                            <label for="seeing">seeing</label>
-                            <input class="inputAjax " type="number" id="seeing" name="seeing" >
-                        </div>
-
-                        <div class="" id="areaDiv" style="display: none;">
-                            <label for="area">Area</label>
-                            <input class="inputAjax" type="number" id="area" name="area" >
-                        </div>
-
-                        <div class="">
-                            <label for="breadth">Breadth</label>
-                            <input class="inputAjax" type="number" id="breadth" name="breadth" value="0">
-                        </div>
-
-                        <div class="">
-                            <label for="fwhmA">FwhmA</label>
-                            <input class="inputAjax" type="number" id="fwhmA" name="fwhmA">
-                        </div>
-
-                        <div class="">
-                            <label for="toverhd">toverhd</label>
-                            <input class="inputAjax" type="number" id="toverhd" name="toverhd">
-                        </div>
-                    </form>
-                    <div class="w-100 d-flex flex-column mt-3 p-2">
-                        <small>Upload a file to complete the fields</small>
-                        <div class="dropZone" id="dropZone">
-                            <span class="choose-file-button">Choose files</span>
-                            <span class="file-message" id="fileMessage">or drag and drop files here</span>
-                            <input class="file-input" id="fileUpload" type="file">
-                        </div>
-                        <h1 id="ajaxButton" class="btn btn-primary w-25 mt-1" >Run ETC</h1>
                     </div>
                 </div>
             </div>
-            <div class="w-50 card shadow m-2">
-                <img  src="{{url_for('static', filename='images/default.png')}}" alt="imagen" id="imgGrafica" class="rounded mx-auto d-block w-50 p-2">
-                <div class="p-2">
-                    <p id="text"></p>
+
+            <!-- RESULTADOS -->
+            <div class="col-12 col-lg-6">
+                <div class="card shadow-lg border-0 rounded-4 h-100">
+
+                    <div class="card-body text-center">
+
+                        <img
+                            src="{{url_for('static', filename='images/default.png')}}"
+                            alt="imagen"
+                            id="imgGrafica"
+                            class="img-fluid rounded-4 shadow-sm mx-auto d-block p-3"
+                        >
+
+                        <div class="mt-3">
+                            <p id="text" class="mb-0"></p>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
+
         </div>
-        <!-- Posible boton de descarga de grafica-->
-        <!-- <a href="" class="btn btn-success" id="dowloadBtn">Download graphics</a> -->
-    </section>
+    </div>
 
 
     <script type="module" src="{{url_for('static', filename='js/index.js')}}"></script>

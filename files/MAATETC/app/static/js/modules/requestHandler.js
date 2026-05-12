@@ -1,8 +1,7 @@
 import {Validation} from './validation.js'
 class RequestHandler {
-    constructor (dataJson, printdata) {
+    constructor (printdata) {
         this.printData = printdata;
-        this.init(dataJson);
     }
 
     init(dataJson) {

@@ -1,16 +1,25 @@
 import {RequestHandler} from './requestHandler.js'
+import { Validation } from './validation.js';
 class FormatData {
     constructor (uic) {
         this.uic = uic;
+        this.requestHandler = new RequestHandler(this.uic.printData);
     }
 
     init(data) {
-        new RequestHandler(this.#getData(data), this.uic.printData);
+        this.requestHandler.init(this.#getData(data));
     }
 
     #getData(data) {
-        // validacion aqui si o si antes de mandar los datos al request
+        // Si todo ok
+        // if (!Validation.isValid(data).success) {
+        //     
+        // } else {
+        //     // Lamamos al ui y mostramos error o warnning
+        // }
+
         return this.#structuringData(data);
+       
     }
 
     #structuringData(data) {

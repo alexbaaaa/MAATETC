@@ -11,6 +11,7 @@ window.GRATINGS
 
 let button = document.getElementById('ajaxButton');
 let data = document.querySelectorAll('.inputAjax');
+let sedtemplate = document.getElementById('sedtemplate');
 let drogZone = document.getElementById('dropZone');
 let computeSelect = document.getElementById('compute');
 let fileUpload = document.getElementById('fileUpload');
@@ -62,8 +63,10 @@ psf.addEventListener('change', (e) => {
     seeing.style.display = (e.target.value == 'extended') ? 'none' : 'block' ;
 })
 
-data[5].addEventListener('change', () => {
-    uic.showSelectSedTemplate(data[5].value);
+
+
+sedtemplate.addEventListener('change', () => {
+    uic.showSelectSedTemplate(sedtemplate.value);
 })
 
 

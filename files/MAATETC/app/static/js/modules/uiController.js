@@ -18,12 +18,13 @@ export class UiController {
      */
     fillFields(dataJson) {
         let inputAjax = document.querySelectorAll('.inputAjax');
+        let sedtemplate = document.getElementById('sedtemplate');
         let dataJsonArray = Object.entries(dataJson);
         inputAjax.forEach( element => {
             let result = dataJsonArray.find((data) => data[0] == element.id);
             element.value = result[1];
         })
-        inputAjax[5].dispatchEvent(new Event("change"));
+        sedtemplate.dispatchEvent(new Event("change"));
     }
     // Tengo que arreglarlo 
     showAlert (jsonValid) {
@@ -44,6 +45,7 @@ export class UiController {
         if(component == undefined) component = this.componentes.at(-1);
         document.querySelector('[id^="sedtemplate_"]')?.remove();
         component.create(this.father);
+        console.log('funciono');
     }
 
     addMessageToTooplist (targets) {
