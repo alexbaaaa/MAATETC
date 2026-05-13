@@ -14,6 +14,8 @@
 
 /*---------Compute-------------*/
 
+
+
 .dropZone {
     height: fit-content;
     width: max-content;
@@ -32,9 +34,7 @@
 .formAjax {
     width: fit-content;
     height: fit-content;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-
+    background-color: rgba(127, 127, 127, 0.589);
 }
 
 .choose-file-button {

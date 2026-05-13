@@ -5,6 +5,10 @@ export class UiController {
         this.componentes = componenetesForm;
         this.father = document.getElementById('sedtemplateFather');
     }
+
+    colourGrid() {
+        
+    }
     // printDataResult?? metodo pintar graficas futuras
     printData(data) {
         let img = document.getElementById('imgGrafica');
@@ -22,9 +26,14 @@ export class UiController {
         let dataJsonArray = Object.entries(dataJson);
         inputAjax.forEach( element => {
             let result = dataJsonArray.find((data) => data[0] == element.id);
+            console.log(result)
             element.value = result[1];
+            
+            if(element.id == 'sedtemplate') {
+                sedtemplate.dispatchEvent(new Event("change"));
+            }
         })
-        sedtemplate.dispatchEvent(new Event("change"));
+        
     }
     // Tengo que arreglarlo 
     showAlert (jsonValid) {
@@ -45,7 +54,6 @@ export class UiController {
         if(component == undefined) component = this.componentes.at(-1);
         document.querySelector('[id^="sedtemplate_"]')?.remove();
         component.create(this.father);
-        console.log('funciono');
     }
 
     addMessageToTooplist (targets) {
@@ -55,6 +63,12 @@ export class UiController {
             target.setAttribute('data-bs-placement', 'top');
             target.setAttribute('data-bs-title', componet.message);
         })
+    }
+    /**
+     * Eliminar el tooplist cuando se haga click en el fields
+     */
+    deleteTooplist() {
+
     }
     
 }
