@@ -64,11 +64,9 @@ export class UiController {
             target.setAttribute('data-bs-title', componet.message);
         })
     }
-    /**
-     * Eliminar el tooplist cuando se haga click en el fields
-     */
-    deleteTooplist() {
-
+    hiedeTooplist(element) {
+        let tooltip = bootstrap.Tooltip.getInstance(element);
+        tooltip.hide();
     }
     
 }

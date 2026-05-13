@@ -32,8 +32,6 @@ uic.addMessageToTooplist(data)
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
-
-
 /**
  * Eventos necesarios para el funcionamiento de la web
  * Estos eventos los extrere a su respectiva clases mas adelante
@@ -81,5 +79,13 @@ window.addEventListener('resize', () => {
     uic.colourGrid(window.innerWidth);
 });
 
+/**
+ * Evento para elimniar los tooplist
+ */
+[...data].forEach((element) => {
+    element.addEventListener('click', () => {
+        uic.hiedeTooplist(element);
+    })
+})
 
    
