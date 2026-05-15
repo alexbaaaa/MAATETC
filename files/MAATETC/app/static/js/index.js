@@ -44,7 +44,6 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 
 button.addEventListener("click", (e) => {
     fdata.init(data);
-    document.getElementById('imgGrafica').classList = 'rounded mx-auto d-block w-75';
 })
 
 drogZone.addEventListener('drop', (e) => {

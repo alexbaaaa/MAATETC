@@ -471,12 +471,13 @@ def run_etc(values,text_elem,image_element):
       print('Will use redshift=0')
     else:
       redz = float(values['redz'])
-
-    if len(values['toverhd']) == 0 : 
-      toverhd = 300
-      print('Will use overhead time = 300 s (only for longslit calculations)')
-    else:
-      toverhd = float(values['toverhd'])
+    # Line comentada 
+    toverhd = 300
+    # if len(values['toverhd']) == 0 : 
+    #   toverhd = 300
+    #   print('Will use overhead time = 300 s (only for longslit calculations)')
+    # else:
+    #   toverhd = float(values['toverhd'])
 
     if len(values['airmass']) == 0 : 
       airmass = 1

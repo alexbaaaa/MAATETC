@@ -1,4 +1,5 @@
 import { componenetesForm } from "./json/componentesForm.js";
+import { componenetesGraph } from "./json/componentesGraph.js";
 import {messages} from "./json/messagesJson.js";
 export class UiController {
     constructor () {
@@ -9,13 +10,12 @@ export class UiController {
     colourGrid() {
         
     }
-    // printDataResult?? metodo pintar graficas futuras
+
     printData(data) {
-        let img = document.getElementById('imgGrafica');
-        let text = document.getElementById('text');
-        let url = 'data:image/png;base64,' + data['imagen'];
-        text.innerHTML = data['text'];
-        img.src = url;
+        let graph = document.getElementById('graphContent');
+        let text = document.getElementById('textContent');
+        componenetesGraph.find(element => element.name == 'image').create(graph, data['imagen']);
+        componenetesGraph.find(element => element.name == 'text').create(text,data['text'] );
     }
     /**
      * Method para rellenar campos a traves de un .txt
