@@ -4,24 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAAT ETC</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+
 </head>
 <body>
-    <section class="container-fluid d-flex flex-column justify-content-between align-items-center vh-100 vw-100">
-        <div class="align-self-start">Logo MAAT ETC</div>
-        <div class="card shadow w-50 h-auto myCard">
-            <div class="card-body">
-                <h2 class="card-title">ETC MAAT</h2>
-                <p class="cardtext text-center w-75 m-auto">A simple and efficient tool to estimate exposure parameters for astronomical observations with <strong>OSIRIS MAAT</strong>. Choose between two calculation modes: <strong>Signal-to-Noise (S/N)</strong>  or <strong> Exposure Time</strong>, depending on your needs.
-                                   <br> Easily import data from a text file to speed up your workflow and streamline observation planning.</p>
-                <div class="d-flex justify-content-around mt-5">
-                    <a href="#" class="btn btn-info">User guide</a>
-                    <a href="{{url_for('main.compute')}}" class="btn btn-primary">Lest start</a>
+    <section class="home-shell container-fluid d-flex flex-column justify-content-between align-items-center w-100">
+        <header class="home-header d-flex justify-content-between align-items-center py-2 w-100">
+            <a class="navbar-brand fw-semibold d-flex align-items-center gap-2 text-decoration-none text-reset" href="{{url_for('main.index')}}">
+                <span class="brand-mark rounded-circle"></span>
+                ETC MAAT
+            </a>
+            <span class="small fw-semibold text-uppercase">CSIC IAA</span>
+        </header>
+
+        <main class="home-panel rounded-3 my-3 overflow-hidden">
+            <div class="row g-0 align-items-stretch">
+                <div class="col-12 col-lg-7 p-4 p-md-5">
+                    <div class="home-copy">
+                        <p class="home-kicker text-uppercase small fw-semibold mb-2">Exposure time calculator</p>
+                        <h1 class="home-title fw-semibold mb-4">MAAT ETC</h1>
+                        <div class="home-text">
+                            <p class="mb-0">
+                                A simple tool to estimate exposure parameters for astronomical observations with
+                                <strong>OSIRIS MAAT</strong>. Choose between Signal-to-Noise or Exposure Time mode,
+                                and import a text file when you need to fill the observation fields faster.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="home-actions d-flex flex-column flex-sm-row gap-3 mt-5">
+                        <a href="{{url_for('main.compute')}}" class="btn btn-start px-4 py-3 fw-semibold">Start calculator</a>
+                        <a href="#" class="btn btn-guide px-4 py-3 fw-semibold">User guide</a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-5 p-4 p-md-5 d-flex">
+                    <div class="info-panel rounded-3 p-3 p-md-4 w-100 d-flex flex-column gap-3">
+                        <div class="info-item rounded-3 p-3">
+                            <strong class="d-block mb-1">Compute modes</strong>
+                            <span class="text-muted">Signal-to-Noise and exposure time estimation.</span>
+                        </div>
+                        <div class="info-item rounded-3 p-3">
+                            <strong class="d-block mb-1">Observation inputs</strong>
+                            <span class="text-muted">Flux, wavelength, grating, moon, air mass and source profile.</span>
+                        </div>
+                        <div class="status-strip rounded-3 p-3 mt-auto">
+                            <strong class="d-block mb-1">Research workflow</strong>
+                            <span>Lightweight interface designed for quick parameter checks.</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="align-self-end">CSIC IAA</div>
+        </main>
+
+        <footer class="home-footer d-flex justify-content-end py-2 w-100">
+            <span class="small">OSIRIS MAAT Exposure Time Calculator</span>
+        </footer>
     </section>
 
 </body>

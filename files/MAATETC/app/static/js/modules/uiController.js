@@ -1,17 +1,21 @@
 import { componenetesForm } from "./json/componentesForm.js";
+import { componenetesGraph } from "./json/componentesGraph.js";
 import {messages} from "./json/messagesJson.js";
 export class UiController {
     constructor () {
         this.componentes = componenetesForm;
         this.father = document.getElementById('sedtemplateFather');
     }
-    // printDataResult?? metodo pintar graficas futuras
+
+    colourGrid() {
+        
+    }
+
     printData(data) {
-        let img = document.getElementById('imgGrafica');
-        let text = document.getElementById('text');
-        let url = 'data:image/png;base64,' + data['imagen'];
-        text.innerHTML = data['text'];
-        img.src = url;
+        let graph = document.getElementById('graphContent');
+        let text = document.getElementById('textContent');
+        componenetesGraph.find(element => element.name == 'image').create(graph, data['imagen']);
+        componenetesGraph.find(element => element.name == 'text').create(text,data['text'] );
     }
     /**
      * Method para rellenar campos a traves de un .txt
@@ -22,9 +26,14 @@ export class UiController {
         let dataJsonArray = Object.entries(dataJson);
         inputAjax.forEach( element => {
             let result = dataJsonArray.find((data) => data[0] == element.id);
+            console.log(result)
             element.value = result[1];
+            
+            if(element.id == 'sedtemplate') {
+                sedtemplate.dispatchEvent(new Event("change"));
+            }
         })
-        sedtemplate.dispatchEvent(new Event("change"));
+        
     }
     // Tengo que arreglarlo 
     showAlert (jsonValid) {
@@ -45,7 +54,6 @@ export class UiController {
         if(component == undefined) component = this.componentes.at(-1);
         document.querySelector('[id^="sedtemplate_"]')?.remove();
         component.create(this.father);
-        console.log('funciono');
     }
 
     addMessageToTooplist (targets) {
@@ -55,6 +63,10 @@ export class UiController {
             target.setAttribute('data-bs-placement', 'top');
             target.setAttribute('data-bs-title', componet.message);
         })
+    }
+    hiedeTooplist(element) {
+        let tooltip = bootstrap.Tooltip.getInstance(element);
+        tooltip.hide();
     }
     
 }

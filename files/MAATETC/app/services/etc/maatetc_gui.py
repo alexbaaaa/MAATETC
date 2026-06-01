@@ -471,12 +471,13 @@ def run_etc(values,text_elem,image_element):
       print('Will use redshift=0')
     else:
       redz = float(values['redz'])
-
-    if len(values['toverhd']) == 0 : 
-      toverhd = 300
-      print('Will use overhead time = 300 s (only for longslit calculations)')
-    else:
-      toverhd = float(values['toverhd'])
+    # Line comentada 
+    toverhd = 300
+    # if len(values['toverhd']) == 0 : 
+    #   toverhd = 300
+    #   print('Will use overhead time = 300 s (only for longslit calculations)')
+    # else:
+    #   toverhd = float(values['toverhd'])
 
     if len(values['airmass']) == 0 : 
       airmass = 1
@@ -633,7 +634,7 @@ def run_etc(values,text_elem,image_element):
         y_ref = SN[idx_ref]
 
         # Limitar eje Y al doble del valor de referencia
-        ax.set_ylim(0, y_ref * 2)
+        ax.set_ylim(y_ref * .5, y_ref * 2)
 
       if fluxtype=='emline':
         ax.plot([wv[wvind],wv[wvind]],[0,SN[wvind]],'-',lw=1)
@@ -654,7 +655,7 @@ def run_etc(values,text_elem,image_element):
           y_ref = Texpo[idx_ref]
 
           # Limitar eje Y al doble del valor de referencia
-          ax.set_ylim(0, y_ref * 2)
+          ax.set_ylim(y_ref * .5, y_ref * 2)
 
       if fluxtype=='emline':
         ax.plot([wv[wvind],wv[wvind]],[0,Texpo[wvind]],'-',lw=1)

@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ETC Compute</title>
     <link rel="shortcut icon" href="{{url_for('static', filename='images/default.png')}}" type="image/x-icon">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
 </head>
 <body>
-    <div class="container-fluid py-2">
-        <div class="row g-4">
+    <div class="container-fluid px-3 px-lg-4 py-3 min-vh-100">
+        <div class="row g-3 align-items-stretch">
             <!--NAV-->
-            <nav class="navbar navbar-expand-lg bg-body-tertiary rounded">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="{{url_for('main.index')}}">ETC MAAT</a>
+            <nav class="navbar navbar-expand-lg navbar-light col-12 rounded-3 px-3 py-3 shadow-sm">
+                <div class="container-fluid px-0">
+                    <a class="navbar-brand fw-semibold d-flex align-items-center gap-2" href="{{url_for('main.index')}}">
+                        <span class="rounded-circle"></span>
+                        ETC MAAT
+                    </a>
                     <button
                     class="navbar-toggler"
                     type="button"
@@ -27,27 +30,34 @@
                     <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarsExample09">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="{{url_for('main.index')}}">User guide</a></li>
-                    </ul>
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('main.index')}}">User guide</a></li>
+                        </ul>
                     </div>
                 </div>
             </nav>
             <!-- FORMULARIO -->
-            <div class="col-12 col-lg-6">
-                <div class="card shadow-lg border-0 rounded-4 h-100" id="warningtarget">
+            <div class="col-12 col-xl-6">
+                <div class="card shadow-lg border-0 rounded-3 h-100 overflow-hidden" id="warningtarget">
 
-                    <div class="alert alert-warning m-3" role="alert" id="warning" style="display: none;">
+                    <div class="alert alert-warning m-3 rounded-3" role="alert" id="warning" style="display: none;">
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body p-3 p-md-4">
+                        <div class="d-flex flex-column flex-md-row justify-content-between gap-2 mb-4">
+                            <div>
+                                <p class="text-uppercase small fw-semibold mb-1">Exposure time calculator</p>
+                                <h1 class="h3 mb-0">Observation parameters</h1>
+                            </div>
+                            <span class="badge rounded-pill align-self-start align-self-md-center px-3 py-2">MAAT ETC</span>
+                        </div>
 
-                        <form action="" class="formAjax row">
+                        <form action="" class="formAjax row m-0 p-3 p-md-4 rounded-3">
 
                             <button type="submit" disabled style="display: none;" aria-hidden="true"></button>
-                            <div class="row g-3 col-12">
+                            <div class="row g-3 col-12 m-0 p-0">
 
-                                <div class="col-12 col-md-6 mb-3">
+                                <div class="col-12 col-sm-6 col-lg-3">
                                     <label for="compute" class="form-label">Compute mode</label>
                                     <select name="compute" id="compute" class="inputAjax form-select">
                                         <option value="SN" selected>S/N</option>
@@ -55,14 +65,14 @@
                                     </select>
                                 </div>
 
-                                <div class="col-12 col-md-6 mb-3">
+                                <div class="col-12 col-sm-6 col-lg-3">
                                     <label for="texpoSN" class="form-label">
                                         Requested <span id="computeLabel">SN</span>
                                     </label>
                                     <input class="inputAjax form-control" type="number" id="texpoSN" name="texpoSN">
                                 </div>
 
-                                <div class="col-12 col-md-6 mb-3">
+                                <div class="col-12 col-sm-6 col-lg-3">
                                     <label for="fluxtype" class="form-label">Flux type</label>
                                     <select name="fluxtype" id="fluxtype" class="inputAjax form-select">
                                         <option value="continuum" selected>continuum</option>
@@ -70,44 +80,50 @@
                                     </select>
                                 </div>
 
-                                <div class="col-12 col-md-6 mb-3">
+                                <div class="col-12 col-sm-6 col-lg-3">
                                     <label for="fluxval" class="form-label">Flux value</label>
                                     <input class="inputAjax form-control" type="number" id="fluxval" name="fluxval">
                                 </div>
 
-                                <div class="col-12 col-md-6 mb-3">
-                                    <label for="wvinflux" class="form-label">Reference wavelength</label>
-                                    <input class="inputAjax form-control" type="text" id="wvinflux" name="wvinflux" required>
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                   <div>
+                                        <label for="wvinflux" class="form-label">Reference wavelength</label>
+                                        <input class="inputAjax form-control" type="text" id="wvinflux" name="wvinflux" required>
+                                   </div>
                                 </div>
 
-                                <div class="col-12 col-md-6 mb-3">
-                                    <label for="grating" class="form-label">Grating</label>
-                                    <select name="grating" id="grating" class="inputAjax form-select">
-                                        <option value="R300B" selected>R300B</option>
-                                        <option value="R300R">R300R</option>
-                                        <option value="R500B">R500B</option>
-                                        <option value="R500R">R500R</option>
-                                        <option value="R1000B">R1000B</option>
-                                        <option value="R1000R">R1000R</option>
-                                        <option value="R2000B">R2000B</option>
-                                        <option value="R2500U">R2500U</option>
-                                        <option value="R2500V">R2500V</option>
-                                        <option value="R2500R">R2500R</option>
-                                        <option value="R2500I">R2500I</option>
-                                    </select>
+                                <div class="col-12 col-sm-6 col-lg-3 d-flex align-items-end">
+                                    <div class="flex-grow-1">
+                                        <label for="grating" class="form-label">Grating</label>
+                                        <select name="grating" id="grating" class="inputAjax form-select">
+                                            <option value="R300B" selected>R300B</option>
+                                            <option value="R300R">R300R</option>
+                                            <option value="R500B">R500B</option>
+                                            <option value="R500R">R500R</option>
+                                            <option value="R1000B">R1000B</option>
+                                            <option value="R1000R">R1000R</option>
+                                            <option value="R2000B">R2000B</option>
+                                            <option value="R2500U">R2500U</option>
+                                            <option value="R2500V">R2500V</option>
+                                            <option value="R2500R">R2500R</option>
+                                            <option value="R2500I">R2500I</option>
+                                        </select>
+                                    </div>
                                 </div>
 
-                                <div class="col-md-12 mb-3 g-2" id="sedtemplateFather">
-                                    <label for="sedtemplate" class="form-label">SEED templates</label>
-                                    <select name="sedtemplate" id="sedtemplate" class="inputAjax form-select">
-                                        <option value="ones" selected>Ones</option>
-                                        <option value="pickles">Pickles</option>
-                                        <option value="blackbody">Blackbody</option>
-                                    </select>
+                                <div class="col-12 col-lg-6 d-flex flex-column flex-md-row align-items-md-end justify-content-start gap-3" id="sedtemplateFather">
+                                    <div class="flex-grow-1 mt-0">
+                                        <label for="sedtemplate" class="form-label">SED templates</label>
+                                        <select name="sedtemplate" id="sedtemplate" class="inputAjax form-select">
+                                            <option value="ones" selected>Ones</option>
+                                            <option value="pickles">Pickles</option>
+                                            <option value="blackbody">Blackbody</option>
+                                        </select>
+                                    </div>
                                 </div>
 
                               
-                                <div class="col-12 col-md-6 mb-3">
+                                <div class="col-12 col-sm-6 col-lg-3">
                                     <label for="moon" class="form-label">Moon</label>
                                     <select name="moon" id="moon" class="inputAjax form-select">
                                         <option value="dark" selected>dark</option>
@@ -117,12 +133,12 @@
                                     </select>
                                 </div>
 
-                                <div class="col-12 col-md-6 mb-3">
+                                <div class="col-12 col-sm-6 col-lg-3">
                                     <label for="airmass" class="form-label">Air mass</label>
                                     <input class="inputAjax form-control" type="text" id="airmass" name="airmass">
                                 </div>
 
-                                <div class="col-12 col-md-6 mb-3">
+                                <div class="col-12 col-sm-6 col-lg-3">
                                     <label for="psf" class="form-label">PSF</label>
                                     <select name="psf" id="psf" class="inputAjax form-select">
                                         <option value="pointsource" selected>pointsource</option>
@@ -130,55 +146,56 @@
                                     </select>
                                 </div>
 
-                                <div class="col-12 col-md-6 mb-3" id="seeingDiv">
+                                <div class="col-12 col-sm-6 col-lg-3" id="seeingDiv">
                                     <label for="seeing" class="form-label">Seeing</label>
                                     <input class="inputAjax form-control" type="number" id="seeing" name="seeing">
                                 </div>
 
-                                <div class="col-12 col-md-6 mb-3" id="areaDiv" style="display: none;">
+                                <div class="col-12 col-sm-6 col-lg-3" id="areaDiv" style="display: none;">
                                     <label for="area" class="form-label">Area</label>
                                     <input class="inputAjax form-control" type="number" id="area" name="area">
                                 </div>
 
-                                <div class="col-12 col-md-6 mb-3">
+                                <div class="col-12 col-sm-6 col-lg-3">
                                     <label for="redz" class="form-label">Red shift</label>
                                     <input class="inputAjax form-control" type="number" id="redz" name="redz">
                                 </div>
 
-                                <div class="col-12 col-md-6 mb-3">
+                                <div class="col-12 col-sm-6 col-lg-3">
                                     <label for="breadth" class="form-label">Breadth</label>
                                     <input class="inputAjax form-control" type="number" id="breadth" name="breadth" value="0">
                                 </div>
 
-                                <div class="col-12 col-md-6 mb-3">
+                                <div class="col-12 col-sm-6 col-lg-3">
                                     <label for="fwhmA" class="form-label">FwhmA</label>
                                     <input class="inputAjax form-control" type="number" id="fwhmA" name="fwhmA">
                                 </div>
 
-                                <div class="col-12 col-md-6 mb-3">
+                                <!-- <div class="col-12 col-md-3 mb-3">
                                     <label for="toverhd" class="form-label">toverhd</label>
                                     <input class="inputAjax form-control" type="number" id="toverhd" name="toverhd">
-                                </div>
+                                </div> -->
 
                             </div>
                         </form>
 
-                        <div class="mt-4">
-                            <small class="text-muted">
+                        <div class="row g-3 align-items-stretch mt-3">
+                            <div class="col-12 col-lg-5">
+                                <button id="ajaxButton" class="btn btn-primary w-100 h-100 py-3 fw-semibold shadow-sm">
+                                Run ETC
+                                </button>
+                            </div>
+                            <small class="text-muted col-12 order-lg-last">
                                 Upload a file to complete the fields
                             </small>
 
-                            <div class="dropZone mt-2" id="dropZone">
+                            <div class="col-12 col-lg-7 dropZone rounded-3" id="dropZone">
                                 <span class="choose-file-button">Choose files</span>
                                 <span class="file-message" id="fileMessage">
                                     or drag and drop files here
                                 </span>
                                 <input class="file-input" id="fileUpload" type="file">
                             </div>
-
-                            <button id="ajaxButton" class="btn btn-primary w-100 py-2 mt-3">
-                                Run ETC
-                            </button>
                         </div>
 
                     </div>
@@ -186,22 +203,22 @@
             </div>
 
             <!-- RESULTADOS -->
-            <div class="col-12 col-lg-6">
-                <div class="card shadow-lg border-0 rounded-4 h-100">
-
-                    <div class="card-body text-center">
-
-                        <img
-                            src="{{url_for('static', filename='images/default.png')}}"
-                            alt="imagen"
-                            id="imgGrafica"
-                            class="img-fluid rounded-4 shadow-sm mx-auto d-block p-3"
-                        >
-
-                        <div class="mt-3">
-                            <p id="text" class="mb-0"></p>
+            <div class="col-12 col-xl-6">
+                <div class="card shadow-lg border-0 rounded-3 h-100 overflow-hidden">
+                    <div class="card-body row g-3 p-3 p-md-4 align-content-start">
+                        <div class="col-12">
+                            <p class="text-uppercase small fw-semibold mb-1">Computed output</p>
+                            <h2 class="h3 mb-0">Signal profile</h2>
                         </div>
+                        <div class="prueba col-12 mx-auto rounded-3" id="graphContent">
 
+                        </div>
+                        <div class="col-12" id="textContent">
+                            <h2 class="visually-hidden">Resume</h2>
+                            <div class="mt-1 rounded-3">
+                                <p id="text" class="mb-0 text-center">Fill in the fields and run the <strong>ETC</strong> to view the graphs</p>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

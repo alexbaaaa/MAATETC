@@ -32,6 +32,11 @@ uic.addMessageToTooplist(data)
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
+/**
+ * Eventos necesarios para el funcionamiento de la web
+ * Estos eventos los extrere a su respectiva clases mas adelante
+ */
+
 // Quitamos el evento por defecto del buscador
 ['dragover', 'drop'].forEach(eventName => {
     document.addEventListener(eventName, e => e.preventDefault());
@@ -39,7 +44,6 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 
 button.addEventListener("click", (e) => {
     fdata.init(data);
-    document.getElementById('imgGrafica').classList = 'rounded mx-auto d-block w-75';
 })
 
 drogZone.addEventListener('drop', (e) => {
@@ -63,12 +67,24 @@ psf.addEventListener('change', (e) => {
     seeing.style.display = (e.target.value == 'extended') ? 'none' : 'block' ;
 })
 
-
-
 sedtemplate.addEventListener('change', () => {
     uic.showSelectSedTemplate(sedtemplate.value);
 })
 
+/**
+ * Evento para el estilado de los fields del form
+ */
+window.addEventListener('resize', () => {
+    uic.colourGrid(window.innerWidth);
+});
 
+/**
+ * Evento para elimniar los tooplist
+ */
+[...data].forEach((element) => {
+    element.addEventListener('click', () => {
+        uic.hiedeTooplist(element);
+    })
+})
 
-
+   

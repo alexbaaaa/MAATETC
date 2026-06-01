@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "init": "flask run --host '0.0.0.0'",
+    "reload": "sudo cp -r /vagrant/files/MAATETC/ /var/www/ && flask run --host '0.0.0.0'"
+  }
+}
