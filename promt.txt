@@ -1,0 +1,8 @@
+Comportame como un diseñador web.
+
+Solo cambia clases de bosstrap o css, no toques ningun archivo extra.
+
+Reduce el tamaño de la imagen para que se ajuste al contenedor padre y no sobresalga de su contenedor.
+
+
+

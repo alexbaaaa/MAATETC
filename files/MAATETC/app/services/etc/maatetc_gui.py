@@ -677,6 +677,7 @@ def run_etc(values, text_elem, image_element):
     ax1.set_ylim(flamnoisy_plot.mean() - 4 * siglim, flamnoisy_plot.mean() + 4 * siglim)
     ax1.set_ylabel(r"$\mathrm{F_{\lambda}\ (10^{-17} erg s^{-1} cm^{-2} \AA^{-1}}$)")
     ax1.set_xlabel(r"wavelength ($\mathrm{\AA}$)")
+    fig.tight_layout(pad=1.2)
 
     return fig, text_elem
 
