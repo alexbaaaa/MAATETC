@@ -13,7 +13,6 @@ export let componenetesGraph = [
     {
         'name' : 'text',
         'create' : (father, dataText) => {
-            console.log([...father.children]) 
             document.getElementById('text')?.remove();
             let text = document.createElement('p');
             text.classList = 'mb-0';
