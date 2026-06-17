@@ -16,6 +16,10 @@ def index():
 def compute():
     return maincontroller.compute_page()
 
+@bp.route('/guide')
+def guide():
+    return maincontroller.guide_page()
+
 @bp.route('/etc', methods=['POST'])
 def etc():
     return etcController.getJSON()

@@ -1,8 +1,10 @@
-Comportame como un diseñador web.
+No quiero que cambies nada. 
+Esta app se ejecuta en un entorno diferente al de ahora
+No hagas ningunas pruebas.
+El entrorno donde se ejecuta es en un docker.
+La configuracion de nginx es algo diferente para que funcione.
 
-Solo cambia clases de bosstrap o css, no toques ningun archivo extra.
+Contexto: la pagina principal si la sirve al intentar hacer cualquier otra petición salta el error 500.
 
-Reduce el tamaño de la imagen para que se ajuste al contenedor padre y no sobresalga de su contenedor.
-
-
-
+Quiero que revisando el codigo me vayas explicando que comandos ejecutar en la terminar del entorno donde esta desplegado esta app.
+Y yo te voy dando las salidas de esos comandos.

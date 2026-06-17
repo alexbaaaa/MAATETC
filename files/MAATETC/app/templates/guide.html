@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAAT ETC User Guide</title>
+    <link rel="shortcut icon" href="{{url_for('static', filename='images/default.png')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+<body>
+    <section class="home-shell guide-shell container-fluid d-flex flex-column align-items-center w-100">
+        <header class="home-header d-flex justify-content-between align-items-center py-2 w-100">
+            <a class="navbar-brand fw-semibold d-flex align-items-center gap-2 text-decoration-none text-reset" href="{{url_for('main.index')}}">
+                <span class="brand-mark rounded-circle"></span>
+                ETC MAAT
+            </a>
+            <span class="small fw-semibold text-uppercase">CSIC IAA</span>
+        </header>
+
+        <main class="home-panel guide-panel rounded-3 my-3 overflow-hidden">
+            <div class="row g-0">
+                <div class="col-12 col-lg-4 p-4 p-md-5 guide-intro">
+                    <p class="home-kicker text-uppercase small fw-semibold mb-2">User guide</p>
+                    <h1 class="guide-title fw-semibold mb-4">How to use MAAT ETC</h1>
+                    <p class="guide-lead mb-4">
+                        This page explains the basic workflow for estimating exposure time or signal-to-noise values
+                        with the MAAT Exposure Time Calculator.
+                    </p>
+                    <div class="home-actions d-flex flex-column gap-3">
+                        <a href="{{url_for('main.compute')}}" class="btn btn-start px-4 py-3 fw-semibold">Open calculator</a>
+                        <a href="{{url_for('main.index')}}" class="btn btn-guide px-4 py-3 fw-semibold">Back to home</a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-8 p-4 p-md-5">
+                    <div class="guide-grid">
+                        <section class="guide-card rounded-3 p-3 p-md-4">
+                            <span class="guide-step rounded-circle">1</span>
+                            <h2 class="h5 fw-semibold mb-3">Choose the compute mode</h2>
+                            <p class="mb-0">
+                                Select <strong>S/N</strong> to estimate the signal-to-noise ratio from an exposure time,
+                                or <strong>Texpo</strong> to estimate the exposure time needed for a requested signal-to-noise value.
+                            </p>
+                        </section>
+
+                        <section class="guide-card rounded-3 p-3 p-md-4">
+                            <span class="guide-step rounded-circle">2</span>
+                            <h2 class="h5 fw-semibold mb-3">Enter the target flux</h2>
+                            <p class="mb-0">
+                                Set the flux type, flux value and reference wavelength. For emission-line calculations,
+                                include the line width in <strong>FwhmA</strong> and use <strong>Breadth</strong> when a spectral breadth is required.
+                            </p>
+                        </section>
+
+                        <section class="guide-card rounded-3 p-3 p-md-4">
+                            <span class="guide-step rounded-circle">3</span>
+                            <h2 class="h5 fw-semibold mb-3">Define the observation setup</h2>
+                            <p class="mb-0">
+                                Pick the grating, moon condition and air mass. These values describe the instrument configuration
+                                and observing conditions used by the calculator.
+                            </p>
+                        </section>
+
+                        <section class="guide-card rounded-3 p-3 p-md-4">
+                            <span class="guide-step rounded-circle">4</span>
+                            <h2 class="h5 fw-semibold mb-3">Describe the source profile</h2>
+                            <p class="mb-0">
+                                Use <strong>pointsource</strong> with a seeing value for compact targets, or <strong>extended</strong>
+                                with an area value for extended sources.
+                            </p>
+                        </section>
+
+                        <section class="guide-card rounded-3 p-3 p-md-4">
+                            <span class="guide-step rounded-circle">5</span>
+                            <h2 class="h5 fw-semibold mb-3">Select the SED template</h2>
+                            <p class="mb-0">
+                                Choose <strong>Ones</strong> for a flat template, <strong>Pickles</strong> for a stellar template,
+                                or <strong>Blackbody</strong> and enter the temperature when the blackbody option appears.
+                            </p>
+                        </section>
+
+                        <section class="guide-card rounded-3 p-3 p-md-4">
+                            <span class="guide-step rounded-circle">6</span>
+                            <h2 class="h5 fw-semibold mb-3">Run the calculator</h2>
+                            <p class="mb-0">
+                                Press <strong>Run ETC</strong>. The result panel displays the generated signal profile and a text summary
+                                once the calculation finishes.
+                            </p>
+                        </section>
+                    </div>
+
+                    <section class="guide-note status-strip rounded-3 p-3 p-md-4 mt-4">
+                        <h2 class="h5 fw-semibold mb-3">Using a text file</h2>
+                        <p class="mb-3">
+                            You can upload a plain text file to fill the form automatically. Each line should use the field name,
+                            an equals sign and the value ending with <strong>#</strong>.
+                        </p>
+                        <a
+                            href="{{url_for('static', filename='etc_example.txt')}}"
+                            class="btn btn-start px-4 py-3 fw-semibold mb-3"
+                            download="etc_example.txt"
+                        >
+                            Download example file
+                        </a>
+                        <pre class="guide-example rounded-3 mb-0"><code>compute = SN#
+texpoSN = 1200#
+fluxtype = continuum#
+fluxval = 1.0#
+wvinflux = 6500#
+grating = R1000R#
+sedtemplate = ones#
+moon = dark#
+airmass = 1.2#
+psf = pointsource#
+seeing = 0.8#
+area = 1#
+redz = 0#
+breadth = 0#
+fwhmA = 3#</code></pre>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <footer class="home-footer d-flex justify-content-end py-2 w-100">
+            <span class="small">OSIRIS MAAT Exposure Time Calculator</span>
+        </footer>
+    </section>
+</body>
+</html>

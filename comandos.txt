@@ -1,0 +1,33 @@
+pwd: /var/www/MAATETC
+ls -la: drwxrwxr-x. 5 root www-data      145 Jun 15 09:20 .
+drwxr-xr-x. 4 root root           33 Jun  1 11:23 ..
+-rwxrwxr-x. 1 root www-data       39 Jun  1 07:57 .env
+-rw-r--r--. 1 root root          166 Jun  1 11:33 Pipfile
+-rw-r--r--. 1 root root        11356 Jun  1 11:33 Pipfile.lock
+drwxr-xr-x. 2 root root           34 Jun 15 08:23 __pycache__
+drwxrwxrwx. 7 root root          105 Jun  1 07:57 app
+-rw-------. 1 root root     13750172 Jun 15 09:20 app.zip
+-rwxrwxr-x. 1 root www-data      160 Jun  1 07:57 package.json
+drwxr-xr-x. 6 root root           87 Jun 15 08:43 venv
+-rwxrwxr-x. 1 root www-data       48 Jun  1 07:57 wsgi.py
+
+
+ps aux: USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0  15448  7052 ?        Ss   Jun01   0:00 sshd: /usr/
+root        6253  0.0  0.0  11092  2528 ?        Ss   Jun01   0:00 nginx: mast
+root        6739  0.0  0.0   4196  3456 pts/1    Ss+  Jun11   0:00 bash
+www-data    6869  0.0  0.0  12356  4340 ?        S    08:03   0:00 nginx: work
+www-data    6870  0.0  0.0  12356  4240 ?        S    08:03   0:00 nginx: work
+root        7696  0.0  0.1 548388 25912 ?        Sl   08:45   0:00 /var/www/MA
+root        7733  0.0  0.9 703680 145728 ?       Sl   08:48   0:01 /var/www/MA
+root        7738  0.0  0.9 703776 145884 ?       Sl   08:48   0:01 /var/www/MA
+root        7742  0.0  0.9 776428 146188 ?       Sl   08:48   0:01 /var/www/MA
+root        7746  0.0  0.9 850104 145452 ?       Sl   08:48   0:01 /var/www/MA
+root        7750  0.0  0.0  18412 11672 ?        Ss   08:50   0:00 sshd: root@
+root        7756  0.0  0.0  18128 11488 ?        Ss   08:50   0:00 sshd: root@
+root        7762  0.0  0.0   2652  2024 ?        Ss   08:50   0:00 /usr/lib/op
+root        7763  0.0  0.0   4280  3560 pts/2    Ss   08:50   0:00 -bash
+root        7795  0.0  0.0   8108  4336 pts/2    R+   09:47   0:00 ps aux
+
+
+grep -E '[g]unicorn|[f]lask|[u]wsgi|[p]ython' : nada

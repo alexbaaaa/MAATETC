@@ -681,6 +681,78 @@ body {
     border: 1px solid #cfe7d8;
 }
 
+.guide-shell {
+    justify-content: flex-start;
+}
+
+.guide-panel {
+    flex: 1 0 auto;
+}
+
+.guide-intro {
+    background: var(--home-surface-soft);
+    border-right: 1px solid var(--home-border);
+}
+
+.guide-title {
+    color: #182733;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1.05;
+}
+
+.guide-lead {
+    color: var(--home-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.guide-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.guide-card {
+    position: relative;
+    min-height: 12rem;
+    color: var(--home-muted);
+    background: var(--home-surface);
+    border: 1px solid var(--home-border);
+}
+
+.guide-card h2 {
+    color: var(--home-text);
+}
+
+.guide-card p,
+.guide-note p {
+    padding: 0;
+    line-height: 1.65;
+}
+
+.guide-step {
+    width: 2rem;
+    height: 2rem;
+    display: inline-grid;
+    place-items: center;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    background: var(--home-accent);
+    font-weight: 700;
+}
+
+.guide-note {
+    color: #355344;
+}
+
+.guide-example {
+    padding: 1rem;
+    color: var(--home-text);
+    background: rgba(255, 255, 255, .72);
+    border: 1px solid #cfe7d8;
+    overflow-x: auto;
+}
+
 @media (max-width: 767.98px) {
     .home-shell {
         justify-content: flex-start !important;
@@ -698,5 +770,18 @@ body {
 
     .home-actions .btn {
         width: 100%;
+    }
+
+    .guide-intro {
+        border-right: 0;
+        border-bottom: 1px solid var(--home-border);
+    }
+
+    .guide-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .guide-card {
+        min-height: auto;
     }
 }

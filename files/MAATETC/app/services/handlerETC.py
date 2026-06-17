@@ -1,7 +1,7 @@
 from flask import request, jsonify
 import io, base64
 from dataclasses import dataclass
-from app.services.etc.maatetc_gui import run_etc, getgrating
+from app.services.etc.ETC import run_etc, getgrating
 
 @dataclass
 class HandlerETC:

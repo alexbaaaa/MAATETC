@@ -13,6 +13,10 @@ class MainController:
     # compute page
     def compute_page(self):
         return render_template('compute.html')
+
+    # guide page
+    def guide_page(self):
+        return render_template('guide.html')
     
     # Test page
     def test_page(self):
