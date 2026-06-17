@@ -3,10 +3,10 @@ No realices ninguna prueba.
 
 Ahora vamos con las validaciones de los archivos selecionados para rellenar los campos.
 
-En este caso quiero que simplemente los campos que no se puedan leer bien por que no este en el formato, simplemente no se rompa.
-Lee mi archivo textlecture.js, y formatData.js donde getiono todo eso.
+Existe un mensaje en mi codigo que dice 'Oops! Something\'s gone wrong with the text file... but you can select them manually.' 
 
-En el caso de que el formato no sea valido hay que mostrar un mensaje diciendo que el formato no es valido aunque se rellenen algunos campos.
+Eliminalo ya que la validación que has hecho cubre ese caso.
 
+Ahora quiero que que se muestre el menssje de el formato del archivo no es valido ya que no se muestra.
 
 

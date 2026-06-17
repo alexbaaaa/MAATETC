@@ -1,7 +1,7 @@
 export let messages = [
     {
         'name' : 'compute',
-        'message' : 'Expose or SN' 
+        'message' : 'Texpo or SN' 
     },
     {
         'name' : 'fluxtype',

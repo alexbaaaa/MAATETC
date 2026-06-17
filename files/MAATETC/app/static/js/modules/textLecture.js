@@ -44,6 +44,7 @@ export class TextLecture {
         // recorrer el archivo y sacar datos 
         let dataJson = {};
         let hasInvalidFormat = false;
+        let validFields = this.getValidFields();
         const lines = result.split('\n');
         lines.forEach((line, index) => {
             let cleanLine = line.trim();
@@ -72,6 +73,11 @@ export class TextLecture {
                 return;
             }
 
+            if (!validFields.has(fieldName)) {
+                hasInvalidFormat = true;
+                return;
+            }
+
             dataJson = {
                 ...dataJson,
                 [fieldName]: fieldValue
@@ -90,6 +96,9 @@ export class TextLecture {
         warning.dataset.source = 'file-format';
         warning.innerText = 'The selected file has an invalid format. Some fields may have been loaded, but malformed lines were ignored.';
         warning.style.display = 'block';
+        warning.classList.remove('alert-success', 'alert-danger');
+        warning.classList.add('alert-warning');
+        warning.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     clearFormatWarning() {
@@ -99,6 +108,12 @@ export class TextLecture {
         warning.innerText = '';
         warning.style.display = 'none';
         delete warning.dataset.source;
+    }
+
+    getValidFields() {
+        let fields = new Set();
+        document.querySelectorAll('.inputAjax').forEach((input) => fields.add(input.id));
+        return fields;
     }
 
 }

@@ -55,10 +55,7 @@ export let componenetesForm = [
     {
         'name' : 'undefined',
         'create' : (father) => {
-            let text  = document.createElement('p');
-            text.id = 'sedtemplate_text';
-            text.innerText = 'Oops! Something\'s gone wrong with the text file... but you can select them manually.' 
-            father.appendChild(text)
+            return;
         }
     }
 ] 
