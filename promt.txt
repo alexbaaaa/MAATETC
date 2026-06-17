@@ -1,10 +1,16 @@
-No quiero que cambies nada. 
-Esta app se ejecuta en un entorno diferente al de ahora
-No hagas ningunas pruebas.
-El entrorno donde se ejecuta es en un docker.
-La configuracion de nginx es algo diferente para que funcione.
+Trabajar como un programador devops senior.
+No realices ninguna prueba.
 
-Contexto: la pagina principal si la sirve al intentar hacer cualquier otra petición salta el error 500.
+Solo quiero que nos centremos en la parte de resultados de la paguina compute.thml.
 
-Quiero que revisando el codigo me vayas explicando que comandos ejecutar en la terminar del entorno donde esta desplegado esta app.
-Y yo te voy dando las salidas de esos comandos.
+En essta seccion se va a pintar la grafica.
+
+Si te das cuenta dentro de los archivos static/js/modules/json existe un archivo js llamado componenetesGraph.js
+
+Donde esta la informacion para crear los componenetes html para luego insertarlos en el compute junto con la imagen.
+
+El problema es que la imagen ocupa mayor espacio que su contenedor provocando que esta se corte.
+
+Haz que el contenedor se adapte al tamaño del contenido.
+No cambies nada del diseño excepto lo imprescindible.
+
