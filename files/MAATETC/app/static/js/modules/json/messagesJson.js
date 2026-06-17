@@ -9,7 +9,7 @@ export let messages = [
     },
     {
         'name' : 'fluxval',
-        'message' : 'Flux valual' 
+        'message' : 'Flux value' 
     },
     {
         'name' : 'grating',

@@ -50,10 +50,16 @@ export class Validation {
 
     #getContext() {
         let grating = document.getElementById('grating');
+        let compute = document.getElementById('compute');
+        let fluxtype = document.getElementById('fluxtype');
+        let psf = document.getElementById('psf');
 
         return {
             "gratings": window.GRATINGS || [],
-            "gratingValue": grating?.value
+            "gratingValue": grating?.value,
+            "computeValue": compute?.value,
+            "fluxtypeValue": fluxtype?.value,
+            "psfValue": psf?.value
         }
     }
 

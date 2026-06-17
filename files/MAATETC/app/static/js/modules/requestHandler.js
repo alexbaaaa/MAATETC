@@ -1,4 +1,3 @@
-import {Validation} from './validation.js'
 class RequestHandler {
     constructor (printdata) {
         this.printData = printdata;
@@ -9,17 +8,33 @@ class RequestHandler {
     }
 
     async getJsonFromController(dataJson) {
-        await fetch('/etc', {
-            "method": 'POST',
-            "body": JSON.stringify(dataJson),
-            "headers": {
-                "content-Type": "application/json"
+        try {
+            let response = await fetch('/etc', {
+                "method": 'POST',
+                "body": JSON.stringify(dataJson),
+                "headers": {
+                    "Content-Type": "application/json"
+                }
+            });
+
+            let contentType = response.headers.get('content-type') || '';
+            if (!contentType.includes('application/json')) {
+                throw new Error('The server returned a non-JSON response.');
             }
-        })
-        .then(response => response.json())
-        .then(data => {
+
+            let data = await response.json();
+            if (!response.ok) {
+                data.success = false;
+            }
+
             this.printData(data);
-        })
+        } catch (error) {
+            console.error(error);
+            this.printData({
+                "success": false,
+                "text": "The selected values cannot produce a valid graph. Please adjust the input parameters."
+            });
+        }
     }
 
     static getGratingsJson() {

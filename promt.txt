@@ -1,12 +1,8 @@
 Trabajar como un programador devops senior.
 No realices ninguna prueba.
 
-Ahora vamos con las validaciones de los archivos selecionados para rellenar los campos.
+Ahora existe un problema y es que aunque yo ponga valores correctos es posible que a nivel matematico no tengan sentido probocando
+que no se devuelva una grafica y soltando un error 500 con un: Uncaught (in promise) SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
 
-Existe un mensaje en mi codigo que dice 'Oops! Something\'s gone wrong with the text file... but you can select them manually.' 
-
-Eliminalo ya que la validación que has hecho cubre ese caso.
-
-Ahora quiero que que se muestre el menssje de el formato del archivo no es valido ya que no se muestra.
-
+Puedes intentar entender que que esta pasando y luego pensamos una manera de solucionarlo
 

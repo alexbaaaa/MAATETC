@@ -687,8 +687,19 @@ def run_etc(values, text_elem, image_element):
     flamnoisy_plot = flamnoisy * 1e17
     ax1.plot(wv, flamnoisy_plot, "0.7", lw=1)
     ax1.plot(wv, flam_plot, "k-", lw=1)
-    siglim = flamnoisy_plot.mean() - flamnoisy_plot[flamnoisy_plot < flamnoisy_plot.mean()].mean()
-    ax1.set_ylim(flamnoisy_plot.mean() - 4 * siglim, flamnoisy_plot.mean() + 4 * siglim)
+    finite_flamnoisy = flamnoisy_plot[np.isfinite(flamnoisy_plot)]
+    if finite_flamnoisy.size > 0:
+        flamnoisy_mean = finite_flamnoisy.mean()
+        lower_values = finite_flamnoisy[finite_flamnoisy < flamnoisy_mean]
+        if lower_values.size > 0:
+            siglim = flamnoisy_mean - lower_values.mean()
+        else:
+            siglim = abs(flamnoisy_mean) * 0.1 if flamnoisy_mean != 0 else 1
+
+        y_min = flamnoisy_mean - 4 * siglim
+        y_max = flamnoisy_mean + 4 * siglim
+        if np.isfinite(y_min) and np.isfinite(y_max) and y_min < y_max:
+            ax1.set_ylim(y_min, y_max)
     ax1.set_ylabel(r"$\mathrm{F_{\lambda}\ (10^{-17} erg s^{-1} cm^{-2} \AA^{-1}}$)")
     ax1.set_xlabel(r"wavelength ($\mathrm{\AA}$)")
     fig.tight_layout(pad=1.2)

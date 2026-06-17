@@ -14,6 +14,13 @@ export class UiController {
     printData(data) {
         let graph = document.getElementById('graphContent');
         let text = document.getElementById('textContent');
+
+        if (data.success === false) {
+            document.getElementById('imgGrafica')?.remove();
+            componenetesGraph.find(element => element.name == 'text').create(text, data['text']);
+            return;
+        }
+
         componenetesGraph.find(element => element.name == 'image').create(graph, data['imagen']);
         componenetesGraph.find(element => element.name == 'text').create(text,data['text'] );
     }
