@@ -21,12 +21,15 @@ export class UiController {
      * Method para rellenar campos a traves de un .txt
      */
     fillFields(dataJson) {
+        if (dataJson == undefined) return;
+
         let inputAjax = document.querySelectorAll('.inputAjax');
         let sedtemplate = document.getElementById('sedtemplate');
         let dataJsonArray = Object.entries(dataJson);
         inputAjax.forEach( element => {
             let result = dataJsonArray.find((data) => data[0] == element.id);
-            console.log(result)
+            if (result == undefined) return;
+
             element.value = result[1];
             
             if(element.id == 'sedtemplate') {

@@ -52,11 +52,15 @@ button.addEventListener("click", (e) => {
 })
 
 drogZone.addEventListener('drop', (e) => {
+    if (e.dataTransfer.files.length === 0) return;
+
     fileMessage.innerHTML = e.dataTransfer.files[0]['name']
     tlecture.initLecture(e.dataTransfer.files);
 })
 
 fileUpload.addEventListener('change', (e) => {
+    if (e.target.files.length === 0) return;
+
     console.log(fileMessage);
     fileMessage.innerHTML = e.target.files[0]['name'];
     tlecture.initLecture(e.target.files);

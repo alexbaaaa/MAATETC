@@ -1,17 +1,12 @@
 Trabajar como un programador devops senior.
 No realices ninguna prueba.
 
-Ahora vamos con las validaciones.
+Ahora vamos con las validaciones de los archivos selecionados para rellenar los campos.
 
-Primero vamos solo con el estilo.
-Para las validadciones quiero que si un campo esta mal por la razones que sea que cambie el color del borde a un tono rojo.
-Con un mesajito justo debajo en pequeño, el cual exprese el motivo por el cual esta incorrecto ese campo.
+En este caso quiero que simplemente los campos que no se puedan leer bien por que no este en el formato, simplemente no se rompa.
+Lee mi archivo textlecture.js, y formatData.js donde getiono todo eso.
 
-Reglas de validacion principales: 
-    1- Si el campo esta vacio: no puede quedarse vacio.
-    2- En "Reference wavelength" no puede dar una longitud de onda fuera de los rangos guardados en la variable window.GRATINGS. 
-
-En principio esas reglas más adelante te dire más asique diseñalo esperando nuevas validadciones adiccionales.
+En el caso de que el formato no sea valido hay que mostrar un mensaje diciendo que el formato no es valido aunque se rellenen algunos campos.
 
 
 
