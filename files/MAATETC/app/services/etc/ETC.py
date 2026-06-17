@@ -632,12 +632,25 @@ def run_etc(values, text_elem, image_element):
     fig = matplotlib.figure.Figure(figsize=(7, 7), dpi=100)
     ax = fig.add_subplot(211)
 
+    def _limit_first_axis(y_values):
+        y_values = np.asarray(y_values, dtype=float)
+        y_values = y_values[np.isfinite(y_values)]
+        if y_values.size == 0:
+            return
+
+        y_values = np.sort(y_values)
+        sample_size = max(1, int(np.ceil(y_values.size * 0.8)))
+        y_limit = 2 * y_values[:sample_size].mean()
+        if np.isfinite(y_limit) and y_limit > 0:
+            ax.set_ylim(top=y_limit)
+
     if compute == "SN":
         if fluxtype == "continuum":
             ax.plot(wv, SN, "k-", lw=0.5)
         if fluxtype == "emline":
             ax.plot([wv[wvind], wv[wvind]], [0, SN[wvind]], "-", lw=1)
             ax.axhline(0)
+        _limit_first_axis(SN)
         ax.set_ylabel(f"S/N in {specpixsA} " + r"$\mathrm{\AA}$")
         if psf == "pointsource":
             ax.set_title(
@@ -655,6 +668,7 @@ def run_etc(values, text_elem, image_element):
         if fluxtype == "emline":
             ax.plot([wv[wvind], wv[wvind]], [0, Texpo[wvind]], "-", lw=1)
             ax.axhline(0)
+        _limit_first_axis(Texpo)
         ax.set_ylabel("exposure time (s)")
         if psf == "pointsource":
             ax.set_title(

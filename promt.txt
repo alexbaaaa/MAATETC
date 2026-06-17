@@ -1,16 +1,15 @@
 Trabajar como un programador devops senior.
 No realices ninguna prueba.
 
-Solo quiero que nos centremos en la parte de resultados de la paguina compute.thml.
+Dentro del archivo ETC.py se encuentra el core de la app.
+No quiero que toque nada excepto lo imprescindible.
 
-En essta seccion se va a pintar la grafica.
+Cuando se genera la grafica, existe un punto en el que se calcula cuanto va a valer el eje de la 'y'.
 
-Si te das cuenta dentro de los archivos static/js/modules/json existe un archivo js llamado componenetesGraph.js
+El problema es que en algunos casos para valores muy pequeños de longitud la grafica se dispara no dejando ver los valores correctamente.
+Para corregir esto necesitamos la siguiente regla.
 
-Donde esta la informacion para crear los componenetes html para luego insertarlos en el compute junto con la imagen.
+El valor maximo del eje 'y' que se puede dar tiene que ser dos veces el valor medio al 80% de los valores de la grafica.
+De forma que los valores superiores a este limite simplemente se cortan.
 
-El problema es que la imagen ocupa mayor espacio que su contenedor provocando que esta se corte.
-
-Haz que el contenedor se adapte al tamaño del contenido.
-No cambies nada del diseño excepto lo imprescindible.
-
+Solo estamos hablando de la primera grafica que se genera, La que muestra o el exposure time o el sn.
