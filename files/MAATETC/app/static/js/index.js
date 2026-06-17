@@ -45,6 +45,9 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 });
 
 button.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!validation.validate(data).success) return;
+
     fdata.init(data);
 })
 
@@ -99,6 +102,12 @@ window.addEventListener('resize', () => {
 [...data].forEach((element) => {
     element.addEventListener('click', () => {
         uic.hiedeTooplist(element);
+    })
+    element.addEventListener('input', () => {
+        validation.clearField(element);
+    })
+    element.addEventListener('change', () => {
+        validation.clearField(element);
     })
 })
 

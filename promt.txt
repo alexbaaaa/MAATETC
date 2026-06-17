@@ -1,21 +1,17 @@
 Trabajar como un programador devops senior.
 No realices ninguna prueba.
 
-En el archivo HandlerETC.py existe un metodo que cree yo el cual llama al metodo del ETC.py del mismo nombre.
+Ahora vamos con las validaciones.
 
-Este metodo en el ETC.py devuelve varios valores no solo los gratings.
-Quiero utilizar otro valor llamado dispersion. 
+Primero vamos solo con el estilo.
+Para las validadciones quiero que si un campo esta mal por la razones que sea que cambie el color del borde a un tono rojo.
+Con un mesajito justo debajo en pequeño, el cual exprese el motivo por el cual esta incorrecto ese campo.
 
-Añadelo en el JSON de retorno.
+Reglas de validacion principales: 
+    1- Si el campo esta vacio: no puede quedarse vacio.
+    2- En "Reference wavelength" no puede dar una longitud de onda fuera de los rangos guardados en la variable window.GRATINGS. 
 
-Cuando hago el fecth hacia gratings para retornar los gratings lo guardo en una variable llamada GRATINGS, pero no la he utilizado.
+En principio esas reglas más adelante te dire más asique diseñalo esperando nuevas validadciones adiccionales.
 
-En principio deja los gratings como estan.
-Lo que me interesa ahora es la dispersion.
 
-El campo Breadth, en el formulario, es el que toma los valores de la dispersion. 
-Quiero que generes un evento de forma que que en función del valor de gratings que se selecione en el select de gratings, cambies el valor del Breadth a su dispersion correspondiente.
-
-Los eventos estoy manejandolos en principio en el index.js.
-No cambies nada de los valores de gratings que obtengo en mi metodo.
 

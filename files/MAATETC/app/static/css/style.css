@@ -460,6 +460,22 @@ body:has(#warningtarget) .form-select:focus {
     box-shadow: 0 0 0 .22rem rgba(47, 125, 159, .14);
 }
 
+body:has(#warningtarget) .field-invalid,
+.field-invalid {
+    border-color: #c93535 !important;
+    box-shadow: 0 0 0 .18rem rgba(201, 53, 53, .14) !important;
+}
+
+.field-error-message {
+    display: block;
+    width: 100%;
+    margin-top: .35rem;
+    color: #b42318;
+    font-size: .78rem;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
 body:has(#warningtarget) .text-muted {
     color: var(--etc-muted) !important;
 }
