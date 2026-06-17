@@ -59,7 +59,7 @@ fileUpload.addEventListener('change', (e) => {
 
 computeSelect.addEventListener('change', () => {
     console.log(computeSelect.value);
-    computeLabel.innerHTML = computeSelect.value == "SN"? "texpo" : "SN";
+    computeLabel.innerHTML = computeSelect.value == "SN"? "texpo" : "S/N";
 })
 
 psf.addEventListener('change', (e) => {
