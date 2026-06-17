@@ -37,7 +37,8 @@ class HandlerETC:
             gratings = getgrating(name)
             json = {
                 " name" : name, 
-                'grating' : [gratings[0][0], gratings[0][-1]]
+                'grating' : [gratings[0][0], gratings[0][-1]],
+                'dispersion' : float(gratings[2])
             }
             gratingsArrayJson.append(json)
         return gratingsArrayJson

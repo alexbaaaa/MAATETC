@@ -20,6 +20,8 @@ let psf = document.getElementById('psf');
 let area = document.getElementById('areaDiv');
 let seeing = document.getElementById('seeingDiv');
 let fileMessage = document.getElementById('fileMessage');
+let grating = document.getElementById('grating');
+let breadth = document.getElementById('breadth');
 
 
 let uic = new UiController();
@@ -61,6 +63,19 @@ computeSelect.addEventListener('change', () => {
     console.log(computeSelect.value);
     computeLabel.innerHTML = computeSelect.value == "SN"? "texpo" : "S/N";
 })
+
+function updateBreadthFromGrating() {
+    if (!window.GRATINGS || !grating || !breadth) return;
+
+    let selectedGrating = window.GRATINGS.find((element) => element[' name'] == grating.value);
+    if (selectedGrating == undefined) return;
+
+    breadth.value = selectedGrating.dispersion;
+}
+
+window.addEventListener('gratingsLoaded', updateBreadthFromGrating);
+grating.addEventListener('change', updateBreadthFromGrating);
+updateBreadthFromGrating();
 
 psf.addEventListener('change', (e) => {
     area.style.display = (e.target.value == 'extended') ? 'block' : 'none';

@@ -32,6 +32,7 @@ class RequestHandler {
         .then(response => response.json())
         .then(data => {
             window.GRATINGS = data;
+            window.dispatchEvent(new CustomEvent('gratingsLoaded', { detail: data }));
         })
     }
 }
