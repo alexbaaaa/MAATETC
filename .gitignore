@@ -23,3 +23,4 @@ TestResults.xml
 #vagrant 
 .vagrant
 .gitmenssaje
+*.zip
