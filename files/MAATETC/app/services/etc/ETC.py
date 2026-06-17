@@ -642,7 +642,7 @@ def run_etc(values, text_elem, image_element):
         sample_size = max(1, int(np.ceil(y_values.size * 0.8)))
         y_limit = 2 * y_values[:sample_size].mean()
         if np.isfinite(y_limit) and y_limit > 0:
-            ax.set_ylim(top=y_limit)
+            ax.set_ylim(0, y_limit)
 
     if compute == "SN":
         if fluxtype == "continuum":
