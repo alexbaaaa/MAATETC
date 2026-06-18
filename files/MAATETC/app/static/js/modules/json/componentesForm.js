@@ -53,6 +53,90 @@ export let componenetesForm = [
         }
     },
     {
+        'name' : 'custom',
+        'create' : (father) => {
+            let div = document.createElement('div');
+            let label = document.createElement('label');
+            let dropZone = document.createElement('div');
+            let button = document.createElement('span');
+            let message = document.createElement('span');
+            let fileInput = document.createElement('input');
+            let contentInput = document.createElement('textarea');
+            let filenameInput = document.createElement('input');
+
+            div.id = 'sedtemplate_custom_div';
+            div.classList = 'sed-file-field';
+
+            label.htmlFor = 'sedtemplate_custom_file';
+            label.id = 'sedtemplate_custom_label';
+            label.classList = 'form-label';
+            label.textContent = 'SED file';
+
+            dropZone.id = 'sedtemplate_custom_dropzone';
+            dropZone.classList = 'dropZone sed-file-dropzone rounded-3';
+
+            button.classList = 'choose-file-button sed-file-button';
+            button.textContent = 'Choose';
+
+            message.id = 'sedtemplate_custom_message';
+            message.classList = 'file-message sed-file-message';
+            message.textContent = 'or drop here';
+
+            fileInput.id = 'sedtemplate_custom_file';
+            fileInput.classList = 'file-input';
+            fileInput.type = 'file';
+
+            contentInput.id = 'sedtemplate_custom_content';
+            contentInput.hidden = true;
+
+            filenameInput.id = 'sedtemplate_custom_filename';
+            filenameInput.type = 'hidden';
+
+            dropZone.appendChild(button);
+            dropZone.appendChild(message);
+            dropZone.appendChild(fileInput);
+            div.appendChild(label);
+            div.appendChild(dropZone);
+            div.appendChild(contentInput);
+            div.appendChild(filenameInput);
+            father.appendChild(div);
+
+            function readSedFile(file) {
+                if (file == undefined) return;
+
+                let reader = new FileReader();
+                reader.onload = (event) => {
+                    contentInput.value = event.target.result;
+                    filenameInput.value = file.name;
+                    message.textContent = file.name;
+                    document.getElementById('sedtemplate')?.dispatchEvent(new Event('input'));
+                };
+                reader.onerror = () => {
+                    contentInput.value = '';
+                    filenameInput.value = '';
+                    message.textContent = 'Unable to read file';
+                    document.getElementById('sedtemplate')?.dispatchEvent(new Event('input'));
+                };
+                reader.readAsText(file);
+            }
+
+            dropZone.addEventListener('dragover', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+            });
+
+            dropZone.addEventListener('drop', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                readSedFile(event.dataTransfer.files[0]);
+            });
+
+            fileInput.addEventListener('change', (event) => {
+                readSedFile(event.target.files[0]);
+            });
+        }
+    },
+    {
         'name' : 'undefined',
         'create' : (father) => {
             return;

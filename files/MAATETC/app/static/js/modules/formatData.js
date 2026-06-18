@@ -26,16 +26,27 @@ class FormatData {
         console.log(data)
         let dataJson = {};
         let dataValue;
+        let psf = document.getElementById('psf')?.value;
         data.forEach(element => {
+            let fieldName = element.name;
             dataValue = element.value.trim() === "" ? "" : element.value ; 
-            if (element.name === 'wvinflux') element.name = 'refwv';
-            if (element.name === 'sedtemplate' & element.value != 'ones') {
+            if (fieldName === 'area' && psf == 'pointsource' && dataValue === "") dataValue = "0";
+            if (fieldName === 'seeing' && psf == 'extended' && dataValue === "") dataValue = "0";
+            if (fieldName === 'wvinflux') fieldName = 'refwv';
+            if (fieldName === 'sedtemplate' && element.value != 'ones') {
                 let sedtemplate  = document.getElementById('sedtemplate_'+element.value);
-                (element.value == 'blackbody')? dataValue+= ' ' + sedtemplate.value :  dataValue+= '_' + sedtemplate.value 
+                if (element.value == 'blackbody') {
+                    dataValue += ' ' + sedtemplate.value;
+                } else if (element.value == 'custom') {
+                    dataJson.customSedContent = document.getElementById('sedtemplate_custom_content')?.value || '';
+                    dataJson.customSedFilename = document.getElementById('sedtemplate_custom_filename')?.value || '';
+                } else {
+                    dataValue += '_' + sedtemplate.value;
+                }
             }
             dataJson = {
                 ...dataJson,
-                [element.name]: dataValue
+                [fieldName]: dataValue
             }
             
             

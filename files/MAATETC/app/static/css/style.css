@@ -156,6 +156,30 @@ body:has(#warningtarget) .badge {
   
 }
 
+.sed-file-field {
+    min-width: 12rem;
+    flex: 0 1 15rem;
+}
+
+.sed-file-dropzone {
+    min-height: 2.8rem;
+    padding: .45rem .6rem;
+    gap: .5rem;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+
+.sed-file-button {
+    padding: .45rem .65rem;
+    font-size: .68rem;
+}
+
+.sed-file-message {
+    min-width: 0;
+    max-width: 8.5rem;
+    white-space: nowrap;
+}
+
 .mt-100{
     margin-top:100px;
 }
@@ -261,6 +285,11 @@ body:has(#warningtarget) .text-muted {
 #textContent p {
     padding: 1rem;
     line-height: 1.55;
+    white-space: pre-line;
+}
+
+#resultDownload {
+    margin: 0 1rem 1rem;
 }
 
 @media (max-width: 575.98px) {
@@ -487,6 +516,11 @@ body:has(#warningtarget) .dropZone {
     border: 1px dashed var(--etc-border-strong);
 }
 
+body:has(#warningtarget) .sed-file-dropzone {
+    min-height: 2.8rem;
+    padding: .45rem .6rem;
+}
+
 body:has(#warningtarget) .dropZone:hover,
 body:has(#warningtarget) .dropZone:focus-within {
     border-color: var(--etc-accent);
@@ -561,6 +595,7 @@ body:has(#warningtarget) #textContent > div {
 body:has(#warningtarget) #textContent p {
     padding: 1rem;
     line-height: 1.55;
+    white-space: pre-line;
 }
 
 @media (max-width: 575.98px) {

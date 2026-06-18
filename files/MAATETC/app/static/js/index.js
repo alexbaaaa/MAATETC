@@ -22,6 +22,7 @@ let seeing = document.getElementById('seeingDiv');
 let fileMessage = document.getElementById('fileMessage');
 let grating = document.getElementById('grating');
 let breadth = document.getElementById('breadth');
+let referenceWavelength = document.getElementById('wvinflux');
 
 
 let uic = new UiController();
@@ -71,18 +72,35 @@ computeSelect.addEventListener('change', () => {
     computeLabel.innerHTML = computeSelect.value == "SN"? "texpo" : "S/N";
 })
 
-function updateBreadthFromGrating() {
-    if (!window.GRATINGS || !grating || !breadth) return;
+function formatWavelengthValue(value) {
+    return value.toFixed(2).replace(/\.?0+$/, '');
+}
+
+function updateDefaultsFromGrating() {
+    if (!window.GRATINGS || !grating) return;
 
     let selectedGrating = window.GRATINGS.find((element) => element[' name'] == grating.value);
     if (selectedGrating == undefined) return;
 
-    breadth.value = selectedGrating.dispersion;
+    if (breadth) {
+        breadth.value = selectedGrating.dispersion;
+    }
+
+    if (referenceWavelength) {
+        let minWavelength = Number(selectedGrating.grating[0]);
+        let maxWavelength = Number(selectedGrating.grating[1]);
+        let middleWavelength = (minWavelength + maxWavelength) / 2;
+
+        if (Number.isFinite(middleWavelength)) {
+            referenceWavelength.value = formatWavelengthValue(middleWavelength);
+            validation.clearField(referenceWavelength);
+        }
+    }
 }
 
-window.addEventListener('gratingsLoaded', updateBreadthFromGrating);
-grating.addEventListener('change', updateBreadthFromGrating);
-updateBreadthFromGrating();
+window.addEventListener('gratingsLoaded', updateDefaultsFromGrating);
+grating.addEventListener('change', updateDefaultsFromGrating);
+updateDefaultsFromGrating();
 
 psf.addEventListener('change', (e) => {
     area.style.display = (e.target.value == 'extended') ? 'block' : 'none';

@@ -13,17 +13,16 @@ export class TextLecture {
         if (file == undefined || file.length === 0 || file[0] == undefined) return jsonContent;
 
         if (file[0].type != 'text/plain') {
-            this.showFormatWarning();
+            this.showInvalidExtensionWarning();
+            return jsonContent;
         }else {
             try {
                 this.readFileContent(file, (content)=> {
                     this.fillFields(content.data); // este metodo rellena los fields del template
-                    if (content.hasInvalidFormat) this.showFormatWarning();
                     jsonContent = content.data 
                 });               
             }catch(e){
                 console.log('Error al leer el texto: '+ e);
-                this.showFormatWarning();
             }
         }
         return jsonContent;
@@ -33,9 +32,6 @@ export class TextLecture {
         const reader = new FileReader();
         reader.onload = (e) => {
             callback(this.parseTxtJson(e.target.result));
-        };
-        reader.onerror = () => {
-            this.showFormatWarning();
         };
         reader.readAsText(file[0]);
     }
@@ -89,21 +85,20 @@ export class TextLecture {
         };
     }
 
-    showFormatWarning() {
+    showInvalidExtensionWarning() {
         let warning = document.getElementById('warning');
         if (warning == undefined) return;
 
-        warning.dataset.source = 'file-format';
-        warning.innerText = 'The selected file has an invalid format. Some fields may have been loaded, but malformed lines were ignored.';
+        warning.dataset.source = 'file-extension';
+        warning.innerText = 'The selected file must be a .txt file.';
         warning.style.display = 'block';
         warning.classList.remove('alert-success', 'alert-danger');
         warning.classList.add('alert-warning');
-        warning.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     clearFormatWarning() {
         let warning = document.getElementById('warning');
-        if (warning == undefined || warning.dataset.source != 'file-format') return;
+        if (warning == undefined || !['file-format', 'file-extension'].includes(warning.dataset.source)) return;
 
         warning.innerText = '';
         warning.style.display = 'none';

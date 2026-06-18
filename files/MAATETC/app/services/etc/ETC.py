@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
+import io
 import random
+from datetime import datetime
 from pathlib import Path
 
 import matplotlib
@@ -89,13 +91,51 @@ def extend(x, y, wv):
 # --------------------------------------------------------------------
 # Generate SED template for target
 # --------------------------------------------------------------------
-def getsed(sedtemplate, redz, wv):
+def _load_custom_sed(custom_sed_content):
+    if custom_sed_content is None or custom_sed_content.strip() == "":
+        raise ValueError("Custom SED file is empty.")
+
+    data = np.genfromtxt(io.StringIO(custom_sed_content), comments="#")
+    if data.size == 0:
+        raise ValueError("Custom SED file does not contain data.")
+
+    data = np.atleast_2d(data)
+    if data.shape[1] < 2:
+        raise ValueError("Custom SED file must contain at least two columns.")
+
+    x = data[:, 0]
+    y = data[:, 1]
+    valid_values = np.isfinite(x) & np.isfinite(y)
+    x = x[valid_values]
+    y = y[valid_values]
+    if x.size < 2:
+        raise ValueError("Custom SED file must contain at least two valid rows.")
+
+    sorted_indices = np.argsort(x)
+    x = x[sorted_indices]
+    y = y[sorted_indices]
+    unique_values = np.concatenate(([True], np.diff(x) > 0))
+    x = x[unique_values]
+    y = y[unique_values]
+    if x.size < 2:
+        raise ValueError("Custom SED file must contain at least two unique wavelength values.")
+
+    return x, y
+
+
+def getsed(sedtemplate, redz, wv, custom_sed_content=None):
     if sedtemplate == "ones":
         flam0 = np.ones(len(wv))  # erg/cm2/s/A
     elif sedtemplate.split()[0] == "blackbody":
         temp = float(sedtemplate.split()[1])
         bt = BlackBody(temp * u.K, scale=1.0 * u.Unit("erg / (cm2 s AA sr)"))
         flam0 = bt(wv * u.AA).value
+    elif sedtemplate == "custom":
+        x, y = _load_custom_sed(custom_sed_content)
+        x = (1 + redz) * x
+        x, y = extend(x, y, wv)
+        rep = interpolate.interp1d(x, y)
+        flam0 = rep(wv)
     else:
         x, y = np.loadtxt(MAATETC_DIR / "seds" / f"{sedtemplate}.txt", unpack=True)
         x = (1 + redz) * x
@@ -279,8 +319,8 @@ def old2newfac(wv):
 # --------------------------------------------------------------------
 # Read SED template and flux scale to input fluxval
 # --------------------------------------------------------------------
-def scaleflux(fluxtype, fluxval, refwv, fwhmA, disp, sedtemplate, redz, msky, wv):
-    flam0 = getsed(sedtemplate, redz, wv)
+def scaleflux(fluxtype, fluxval, refwv, fwhmA, disp, sedtemplate, redz, msky, wv, custom_sed_content=None):
+    flam0 = getsed(sedtemplate, redz, wv, custom_sed_content)
     if fluxtype == "emline":
         flam0 = getsed("ones", redz, wv)
 
@@ -382,6 +422,7 @@ def doloop(
     wv,
     eff,
     effslit,
+    custom_sed_content=None,
 ):
     plotPSF = False
 
@@ -416,7 +457,7 @@ def doloop(
     RON2 = ron**2 * signalarea_pix
     RON2slit = ron**2 * signalareaslit_pix
 
-    flam, flamsk = scaleflux(fluxtype, fluxval, refwv, fwhmA, disp, sedtemplate, redz, msky, wv)
+    flam, flamsk = scaleflux(fluxtype, fluxval, refwv, fwhmA, disp, sedtemplate, redz, msky, wv, custom_sed_content)
 
     specpixsA = np.max([disp, breadth])
 
@@ -458,6 +499,54 @@ def _build_empty_figure(message):
     return fig
 
 
+def _build_result_file(
+    compute,
+    fluxtype,
+    fluxval,
+    refwv,
+    sedtemplate,
+    moon,
+    grating,
+    seeing,
+    area,
+    psf,
+    texpoSN,
+    breadth,
+    fwhmA,
+    redz,
+    airmass,
+    wv,
+    flam,
+    flamnoisy,
+    result_values,
+):
+    prefix = "SN" if compute == "SN" else "Texpo"
+    filename = f"{prefix}_{datetime.now().strftime('%Y%m%d%H%M%S')}.txt"
+    header_values = [
+        fluxtype,
+        fluxval,
+        refwv,
+        sedtemplate,
+        moon,
+        grating,
+        compute,
+        seeing,
+        area,
+        psf,
+        texpoSN,
+        breadth,
+        fwhmA,
+        redz,
+        airmass,
+    ]
+    lines = ["# " + " ".join(str(value) for value in header_values)]
+    lines.extend(
+        f"{wv_value} {flam_value} {flamnoisy_value} {result_value}"
+        for wv_value, flam_value, flamnoisy_value, result_value in zip(wv, flam, flamnoisy, result_values)
+    )
+    return filename, "\n".join(lines) + "\n"
+
+
 def run_etc(values, text_elem, image_element):
     del image_element  # Not used in web mode; kept for interface compatibility.
 
@@ -465,12 +554,17 @@ def run_etc(values, text_elem, image_element):
     fluxval = float(values["fluxval"])
     refwv = float(values["refwv"])
     sedtemplate = values["sedtemplate"]
+    custom_sed_content = values.get("customSedContent", "")
     moon = values["moon"]
     grating = values["grating"]
     compute = values["compute"]
-    seeing = float(values["seeing"])
-    area = float(values["area"])
     psf = values["psf"]
+    if psf == "pointsource":
+        seeing = float(values["seeing"])
+        area = _get_optional_float(values, "area", 0, "Will use area=0")
+    else:
+        seeing = _get_optional_float(values, "seeing", 0, "Will use seeing=0")
+        area = float(values["area"])
     texpoSN = float(values["texpoSN"])
 
     fwhmA = _get_optional_float(values, "fwhmA", 0, "Will use fwhmA=0")
@@ -534,6 +628,7 @@ def run_etc(values, text_elem, image_element):
             wv,
             eff,
             effslit,
+            custom_sed_content,
         )
         if psf == "pointsource":
             text_elem.update(
@@ -581,6 +676,7 @@ def run_etc(values, text_elem, image_element):
             wv,
             eff,
             effslit,
+            custom_sed_content,
         )
         if psf == "pointsource":
             text_elem.update(
@@ -629,6 +725,31 @@ def run_etc(values, text_elem, image_element):
                 )
             )
 
+    result_values = SN if compute == "SN" else Texpo
+    result_filename, result_file = _build_result_file(
+        compute,
+        fluxtype,
+        fluxval,
+        refwv,
+        sedtemplate,
+        moon,
+        grating,
+        seeing,
+        area,
+        psf,
+        texpoSN,
+        breadth,
+        fwhmA,
+        redz,
+        airmass,
+        wv,
+        flam,
+        flamnoisy,
+        result_values,
+    )
+    setattr(text_elem, "result_filename", result_filename)
+    setattr(text_elem, "result_file", result_file)
+
     fig = matplotlib.figure.Figure(figsize=(7, 7), dpi=100)
     ax = fig.add_subplot(211)
 
@@ -639,7 +760,7 @@ def run_etc(values, text_elem, image_element):
             return
 
         y_values = np.sort(y_values)
-        sample_size = max(1, int(np.ceil(y_values.size * 0.8)))
+        sample_size = max(1, int(np.ceil(y_values.size * 0.9)))
         y_limit = 2 * y_values[:sample_size].mean()
         if np.isfinite(y_limit) and y_limit > 0:
             ax.set_ylim(0, y_limit)

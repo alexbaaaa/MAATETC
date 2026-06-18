@@ -1,8 +1,10 @@
 Trabajar como un programador devops senior.
 No realices ninguna prueba.
 
-Ahora existe un problema y es que aunque yo ponga valores correctos es posible que a nivel matematico no tengan sentido probocando
-que no se devuelva una grafica y soltando un error 500 con un: Uncaught (in promise) SyntaxError: Unexpected token '<', "<!doctype "... is not valid JSON
+Perfecto ahora en cuanto al sed.
+Quiero añadir una cuarta opcion para permitir leer un archivo cualquiera.
+De forma que si se selcciona esta opcion tiene que aparecer un campo de subida de archivo.
 
-Puedes intentar entender que que esta pasando y luego pensamos una manera de solucionarlo
+Este campo tiene que ser pequeñito que no cambie mucho el layaout del formulario.
+Tiene que tener las mismas funcionalidades que el subir archivo que ya existe: drag and drop, nombre del archivo.
 

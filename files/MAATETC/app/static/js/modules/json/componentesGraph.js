@@ -19,9 +19,33 @@ export let componenetesGraph = [
             let text = document.createElement('p');
             text.classList = 'mb-0';
             text.id = 'text';
-            text.innerHTML = dataText;
-            father.firstElementChild.appendChild(text);
+            text.textContent = dataText;
+            (father.querySelector('div') || father).appendChild(text);
             
+        }
+    },
+    {
+        'name' : 'download',
+        'create' : (father, resultFile) => {
+            let previous = document.getElementById('resultDownload');
+            if (previous?.dataset.objectUrl) {
+                URL.revokeObjectURL(previous.dataset.objectUrl);
+            }
+            previous?.remove();
+
+            if (resultFile == undefined || resultFile.content == undefined || resultFile.content === '') return;
+
+            let blob = new Blob([resultFile.content], { type: 'text/plain' });
+            let objectUrl = URL.createObjectURL(blob);
+            let link = document.createElement('a');
+            link.id = 'resultDownload';
+            link.classList = 'btn btn-outline-info btn-sm mt-3';
+            link.href = objectUrl;
+            link.dataset.objectUrl = objectUrl;
+            link.download = resultFile.filename || 'ETC_result.txt';
+            link.textContent = 'Download result .txt';
+
+            (father.querySelector('div') || father).appendChild(link);
         }
     },
 ]

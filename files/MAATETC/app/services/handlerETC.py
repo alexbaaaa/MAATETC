@@ -31,6 +31,11 @@ class HandlerETC:
                 "imagen": img_base64,
                 "text" : text_elem.value
             }
+            if text_elem.result_file:
+                resultJson["resultFile"] = {
+                    "filename": text_elem.result_filename,
+                    "content": text_elem.result_file
+                }
             return resultJson
         except Exception:
             traceback.print_exc()
@@ -59,8 +64,14 @@ class HandlerETC:
 class Dummy:
     def __init__(self):
         self.value = ""
+        self.result_filename = ""
+        self.result_file = ""
 
     def update(self, value):
         self.value = value
     def to_dict(self):
-        return {"value": self.value}
+        return {
+            "value": self.value,
+            "result_filename": self.result_filename,
+            "result_file": self.result_file
+        }

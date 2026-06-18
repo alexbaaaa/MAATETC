@@ -8,7 +8,7 @@ const allowedValues = {
     moon: ['dark', 'gray', 'grey', 'bright'],
     psf: ['pointsource', 'extended'],
     grating: ['R300B', 'R300R', 'R500B', 'R500R', 'R1000B', 'R1000R', 'R2000B', 'R2500U', 'R2500V', 'R2500R', 'R2500I'],
-    sedtemplate: ['ones', 'pickles', 'blackbody']
+    sedtemplate: ['ones', 'pickles', 'blackbody', 'custom']
 };
 
 function isEmpty(input) {
@@ -144,6 +144,16 @@ export let validationJSON = [
             if (!Number.isFinite(temperature)) return 'Blackbody temperature must be a valid number.';
 
             return temperature > 0 ? null : 'Blackbody temperature must be a positive number.';
+        }
+    },
+    {
+        name: 'custom-sed-file',
+        appliesTo: (input) => input.id === 'sedtemplate',
+        validate: (input) => {
+            if (input.value !== 'custom') return null;
+
+            let sedContent = document.getElementById('sedtemplate_custom_content')?.value || '';
+            return sedContent.trim() !== '' ? null : 'Select a SED file.';
         }
     }
 ]

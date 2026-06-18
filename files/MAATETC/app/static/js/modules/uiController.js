@@ -18,11 +18,13 @@ export class UiController {
         if (data.success === false) {
             document.getElementById('imgGrafica')?.remove();
             componenetesGraph.find(element => element.name == 'text').create(text, data['text']);
+            componenetesGraph.find(element => element.name == 'download').create(text);
             return;
         }
 
         componenetesGraph.find(element => element.name == 'image').create(graph, data['imagen']);
         componenetesGraph.find(element => element.name == 'text').create(text,data['text'] );
+        componenetesGraph.find(element => element.name == 'download').create(text, data['resultFile']);
     }
     /**
      * Method para rellenar campos a traves de un .txt
