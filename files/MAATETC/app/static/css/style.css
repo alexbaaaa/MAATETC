@@ -676,6 +676,12 @@ body {
     line-height: 1;
 }
 
+.home-title-logo {
+    width: clamp(3rem, 7vw, 5.75rem);
+    height: clamp(3rem, 7vw, 5.75rem);
+    object-fit: contain;
+}
+
 .home-text {
     color: var(--home-muted);
     font-size: clamp(1rem, 2vw, 1.12rem);

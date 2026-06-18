@@ -1,10 +1,19 @@
 Trabajar como un programador devops senior.
 No realices ninguna prueba.
 
-Perfecto ahora en cuanto al sed.
-Quiero añadir una cuarta opcion para permitir leer un archivo cualquiera.
-De forma que si se selcciona esta opcion tiene que aparecer un campo de subida de archivo.
+Vamos a hacer pequeños cambios de diseño.
 
-Este campo tiene que ser pequeñito que no cambie mucho el layaout del formulario.
-Tiene que tener las mismas funcionalidades que el subir archivo que ya existe: drag and drop, nombre del archivo.
+Primero: Todos los sitios que pongan "OSIRIS MAAT" hay que cambiarlo a "MAAT OSIRIS+".
+Segudo: En el index.html existe un apartado llamado "Research workflow".
+    1. Aqui Quiero que mostremos la información de los desarrolladores
+    2. La información va a ser la siguiente:
+        2.1: 
+        Developers
+            Enrique Pérez — ETC logic development
+            Alejandro Aguilera — Web development, integration and deployment.
+Tercero: en la esquina inferior izquierda hay que colocar la versión.
+    1. Las versiones seran catalagodas por la fecha de su ultima actualización.
+    2. En principio pon la fecha de hoy separada por puntos 18.06.2026
+
+
 
