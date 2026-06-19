@@ -634,11 +634,11 @@ def run_etc(values, text_elem, image_element):
             text_elem.update(
                 value=(
                     "Integrating a pointsource of fwhm %.2f arcsec\n"
-                    "S/N resulting from exposure time %.1f sec\n"
-                    "%.2f at wavelength of maximum efficiency %.1f\n"
-                    "%.2f at efficiency weighted wavelength %.1f\n"
-                    "%.2f at range mid wavelength %.1f\n"
-                    "%.2f at input reference wavelength %.1f"
+                    "S/N resulting from exposure time %.1f sec:\n"
+                    "    %.2f at wavelength of maximum efficiency %.1f\n"
+                    "    %.2f at efficiency weighted wavelength %.1f\n"
+                    "    %.2f at range mid wavelength %.1f\n"
+                    "    %.2f at input reference wavelength %.1f"
                     % (seeing, Texpo, SN[iefmx], wveffmax, SN[iefwv], wveffwv, SN[iwvcen], wvcen, SN[iwvinf], refwv)
                 )
             )
@@ -646,11 +646,11 @@ def run_etc(values, text_elem, image_element):
             text_elem.update(
                 value=(
                     "Integrating in square box of side %.2f arcsec\n"
-                    "S/N resulting from exposure time %.1f sec\n"
-                    "%.2f at wavelength of maximum efficiency %.1f\n"
-                    "%.2f at efficiency weighted wavelength %.1f\n"
-                    "%.2f at range mid wavelength %.1f\n"
-                    "%.2f at input reference wavelength %.1f"
+                    "S/N resulting from exposure time %.1f sec:\n"
+                    "    %.2f at wavelength of maximum efficiency %.1f\n"
+                    "    %.2f at efficiency weighted wavelength %.1f\n"
+                    "    %.2f at range mid wavelength %.1f\n"
+                    "    %.2f at input reference wavelength %.1f"
                     % (area, Texpo, SN[iefmx], wveffmax, SN[iefwv], wveffwv, SN[iwvcen], wvcen, SN[iwvinf], refwv)
                 )
             )
@@ -682,11 +682,11 @@ def run_etc(values, text_elem, image_element):
             text_elem.update(
                 value=(
                     "Integrating a pointsource of fwhm %.2f arcsec\n"
-                    "Exposure time (sec) resulting from S/N %.1f\n"
-                    "%.2f at wavelength of maximum efficiency %.1f\n"
-                    "%.2f at efficiency weighted wavelength %.1f\n"
-                    "%.2f at range mid wavelength %.1f\n"
-                    "%.2f at input reference wavelength %.1f"
+                    "Exposure time (sec) resulting from S/N %.1f:\n"
+                    "    %.2f at wavelength of maximum efficiency %.1f\n"
+                    "    %.2f at efficiency weighted wavelength %.1f\n"
+                    "    %.2f at range mid wavelength %.1f\n"
+                    "    %.2f at input reference wavelength %.1f"
                     % (
                         seeing,
                         SN_input,
@@ -705,11 +705,11 @@ def run_etc(values, text_elem, image_element):
             text_elem.update(
                 value=(
                     "Integrating in square box of side %.2f arcsec\n"
-                    "Exposure time (sec) resulting from S/N %.1f\n"
-                    "%.2f at wavelength of maximum efficiency %.1f\n"
-                    "%.2f at efficiency weighted wavelength %.1f\n"
-                    "%.2f at range mid wavelength %.1f\n"
-                    "%.2f at input reference wavelength %.1f"
+                    "Exposure time (sec) resulting from S/N %.1f:\n"
+                    "    %.2f at wavelength of maximum efficiency %.1f\n"
+                    "    %.2f at efficiency weighted wavelength %.1f\n"
+                    "    %.2f at range mid wavelength %.1f\n"
+                    "    %.2f at input reference wavelength %.1f"
                     % (
                         area,
                         SN_input,

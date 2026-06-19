@@ -17,15 +17,52 @@ export class UiController {
 
         if (data.success === false) {
             document.getElementById('imgGrafica')?.remove();
-            componenetesGraph.find(element => element.name == 'text').create(text, data['text']);
+            this.printSummaryText(text, data['text']);
+            componenetesGraph.find(element => element.name == 'imageDownload').create(text);
             componenetesGraph.find(element => element.name == 'download').create(text);
             return;
         }
 
         componenetesGraph.find(element => element.name == 'image').create(graph, data['imagen']);
-        componenetesGraph.find(element => element.name == 'text').create(text,data['text'] );
+        this.printSummaryText(text, data['text']);
+        componenetesGraph.find(element => element.name == 'imageDownload').create(text, data['imagen']);
         componenetesGraph.find(element => element.name == 'download').create(text, data['resultFile']);
     }
+
+    printSummaryText(father, summaryText) {
+        componenetesGraph.find(element => element.name == 'text').create(father, summaryText);
+        this.formatSummaryText();
+    }
+
+    formatSummaryText() {
+        let text = document.getElementById('text');
+        if (text == undefined) return;
+
+        let lines = text.textContent.split('\n');
+        text.textContent = '';
+        text.classList.add('summary-text');
+
+        let indentNextLines = false;
+        lines.forEach((line) => {
+            let cleanLine = line.trimStart();
+            if (cleanLine === '') return;
+
+            if (cleanLine.includes('resulting from') && !cleanLine.endsWith(':')) {
+                cleanLine += ':';
+            }
+
+            let lineElement = document.createElement('span');
+            lineElement.classList = 'summary-line';
+            if (indentNextLines) lineElement.classList.add('summary-line-indent');
+            lineElement.textContent = cleanLine;
+            text.appendChild(lineElement);
+
+            if (cleanLine.includes('resulting from') && cleanLine.endsWith(':')) {
+                indentNextLines = true;
+            }
+        });
+    }
+
     /**
      * Method para rellenar campos a traves de un .txt
      */

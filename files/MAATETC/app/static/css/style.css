@@ -288,8 +288,20 @@ body:has(#warningtarget) .text-muted {
     white-space: pre-line;
 }
 
-#resultDownload {
-    margin: 0 1rem 1rem;
+#textContent .summary-text {
+    white-space: normal;
+}
+
+.summary-line {
+    display: block;
+}
+
+.summary-line-indent {
+    padding-left: 1.5rem;
+}
+
+.download-actions {
+    margin-top: -.25rem;
 }
 
 @media (max-width: 575.98px) {
@@ -465,6 +477,24 @@ body:has(#warningtarget) .formAjax {
     border: 1px solid var(--etc-border);
 }
 
+@media (min-width: 992px) {
+    .form-order-lg-1 { order: 1; }
+    .form-order-lg-2 { order: 2; }
+    .form-order-lg-3 { order: 3; }
+    .form-order-lg-4 { order: 4; }
+    .form-order-lg-5 { order: 5; }
+    .form-order-lg-6 { order: 6; }
+    .form-order-lg-7 { order: 7; }
+    .form-order-lg-8 { order: 8; }
+    .form-order-lg-9 { order: 9; }
+    .form-order-lg-10 { order: 10; }
+    .form-order-lg-11 { order: 11; }
+    .form-order-lg-12 { order: 12; }
+    .form-order-lg-13 { order: 13; }
+    .form-order-lg-14 { order: 14; }
+    .form-order-lg-15 { order: 15; }
+}
+
 body:has(#warningtarget) .form-label {
     color: #465b6a;
     font-size: .82rem;
@@ -596,6 +626,10 @@ body:has(#warningtarget) #textContent p {
     padding: 1rem;
     line-height: 1.55;
     white-space: pre-line;
+}
+
+body:has(#warningtarget) #textContent .summary-text {
+    white-space: normal;
 }
 
 @media (max-width: 575.98px) {

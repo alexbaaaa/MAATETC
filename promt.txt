@@ -1,19 +1,8 @@
 Trabajar como un programador devops senior.
 No realices ninguna prueba.
 
-Vamos a hacer pequeños cambios de diseño.
-
-Primero: Todos los sitios que pongan "OSIRIS MAAT" hay que cambiarlo a "MAAT OSIRIS+".
-Segudo: En el index.html existe un apartado llamado "Research workflow".
-    1. Aqui Quiero que mostremos la información de los desarrolladores
-    2. La información va a ser la siguiente:
-        2.1: 
-        Developers
-            Enrique Pérez — ETC logic development
-            Alejandro Aguilera — Web development, integration and deployment.
-Tercero: en la esquina inferior izquierda hay que colocar la versión.
-    1. Las versiones seran catalagodas por la fecha de su ultima actualización.
-    2. En principio pon la fecha de hoy separada por puntos 18.06.2026
-
-
-
+La indentación no funcion.
+Cambio de planes.
+Crea un metodo en UiController el cual controle el texto resumen.
+Este darle la indentación necesaria.
+Modifica el html en esa parte en concreto si lo necesitas.
