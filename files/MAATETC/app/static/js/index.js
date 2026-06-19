@@ -23,6 +23,11 @@ let fileMessage = document.getElementById('fileMessage');
 let grating = document.getElementById('grating');
 let breadth = document.getElementById('breadth');
 let referenceWavelength = document.getElementById('wvinflux');
+let fluxType = document.getElementById('fluxtype');
+let fluxUnit = document.getElementById('fluxunit');
+let fluxFilter = document.getElementById('fluxfilter');
+let fluxUnitDiv = document.getElementById('fluxUnitDiv');
+let fluxFilterDiv = document.getElementById('fluxFilterDiv');
 
 
 let uic = new UiController();
@@ -71,6 +76,37 @@ computeSelect.addEventListener('change', () => {
     console.log(computeSelect.value);
     computeLabel.innerHTML = computeSelect.value == "SN"? "texpo" : "S/N";
 })
+
+function updateFluxControls() {
+    let isContinuum = fluxType && fluxType.value == 'continuum';
+    let needsFilter = isContinuum && fluxUnit && fluxUnit.value == 'mag';
+
+    if (fluxUnitDiv) {
+        fluxUnitDiv.style.display = isContinuum ? 'block' : 'none';
+    }
+
+    if (fluxFilterDiv) {
+        fluxFilterDiv.style.display = needsFilter ? 'block' : 'none';
+    }
+
+    if (fluxUnit) {
+        fluxUnit.disabled = !isContinuum;
+    }
+
+    if (fluxFilter) {
+        fluxFilter.disabled = !needsFilter;
+    }
+}
+
+if (fluxType) {
+    fluxType.addEventListener('change', updateFluxControls);
+}
+
+if (fluxUnit) {
+    fluxUnit.addEventListener('change', updateFluxControls);
+}
+
+updateFluxControls();
 
 function formatWavelengthValue(value) {
     return value.toFixed(2).replace(/\.?0+$/, '');

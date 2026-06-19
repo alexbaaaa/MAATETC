@@ -72,7 +72,7 @@
                                     <input class="inputAjax form-control" type="number" id="texpoSN" name="texpoSN">
                                 </div>
 
-                                <div class="col-12 col-sm-6 col-lg-6 form-order-lg-3">
+                                <div class="col-12 col-sm-6 col-lg-3 form-order-lg-3">
                                     <label for="fluxtype" class="form-label">Flux type</label>
                                     <select name="fluxtype" id="fluxtype" class="inputAjax form-select">
                                         <option value="continuum" selected>continuum</option>
@@ -80,19 +80,38 @@
                                     </select>
                                 </div>
 
-                                <div class="col-12 col-sm-6 col-lg-6 form-order-lg-4">
+                                <div class="col-12 col-sm-6 col-lg-3 form-order-lg-4" id="fluxUnitDiv">
+                                    <label for="fluxunit" class="form-label">Flux scale</label>
+                                    <select name="fluxunit" id="fluxunit" class="form-select">
+                                        <option value="mag" selected>mag</option>
+                                        <option value="Flambda">Flambda</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-12 col-sm-6 col-lg-3 form-order-lg-5">
                                     <label for="fluxval" class="form-label">Flux value</label>
                                     <input class="inputAjax form-control" type="number" id="fluxval" name="fluxval">
                                 </div>
 
-                                <div class="col-12 col-sm-6 col-lg-4 form-order-lg-6">
+                                <div class="col-12 col-sm-6 col-lg-3 form-order-lg-6" id="fluxFilterDiv">
+                                    <label for="fluxfilter" class="form-label">Filter</label>
+                                    <select name="fluxfilter" id="fluxfilter" class="form-select">
+                                        <option value="u" selected>u</option>
+                                        <option value="g">g</option>
+                                        <option value="r">r</option>
+                                        <option value="i">i</option>
+                                        <option value="z">z</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-12 col-sm-6 col-lg-4 form-order-lg-8">
                                    <div>
                                         <label for="wvinflux" class="form-label">Reference wavelength</label>
                                         <input class="inputAjax form-control" type="text" id="wvinflux" name="wvinflux" required>
                                    </div>
                                 </div>
 
-                                <div class="col-12 col-sm-6 col-lg-4 form-order-lg-5 d-flex align-items-end">
+                                <div class="col-12 col-sm-6 col-lg-4 form-order-lg-7 d-flex align-items-end">
                                     <div class="flex-grow-1">
                                         <label for="grating" class="form-label">Grating</label>
                                         <select name="grating" id="grating" class="inputAjax form-select">
@@ -111,7 +130,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-lg-12 form-order-lg-8 d-flex flex-column flex-md-row align-items-md-end justify-content-start gap-3" id="sedtemplateFather">
+                                <div class="col-12 col-lg-12 form-order-lg-10 d-flex flex-column flex-md-row align-items-md-end justify-content-start gap-3" id="sedtemplateFather">
                                     <div class="flex-grow-1 mt-0">
                                         <label for="sedtemplate" class="form-label">SED templates</label>
                                         <select name="sedtemplate" id="sedtemplate" class="inputAjax form-select">
@@ -124,7 +143,7 @@
                                 </div>
 
                               
-                                <div class="col-12 col-sm-6 col-lg-3 form-order-lg-9">
+                                <div class="col-12 col-sm-6 col-lg-3 form-order-lg-11">
                                     <label for="moon" class="form-label">Moon</label>
                                     <select name="moon" id="moon" class="inputAjax form-select">
                                         <option value="dark" selected>dark</option>
@@ -134,12 +153,12 @@
                                     </select>
                                 </div>
 
-                                <div class="col-12 col-sm-6 col-lg-3 form-order-lg-10">
+                                <div class="col-12 col-sm-6 col-lg-3 form-order-lg-12">
                                     <label for="airmass" class="form-label">Air mass</label>
                                     <input class="inputAjax form-control" type="text" id="airmass" name="airmass">
                                 </div>
 
-                                <div class="col-12 col-sm-6 col-lg-3 form-order-lg-11">
+                                <div class="col-12 col-sm-6 col-lg-3 form-order-lg-13">
                                     <label for="psf" class="form-label">PSF</label>
                                     <select name="psf" id="psf" class="inputAjax form-select">
                                         <option value="pointsource" selected>pointsource</option>
@@ -147,27 +166,27 @@
                                     </select>
                                 </div>
 
-                                <div class="col-12 col-sm-6 col-lg-3 form-order-lg-12" id="seeingDiv">
+                                <div class="col-12 col-sm-6 col-lg-3 form-order-lg-14" id="seeingDiv">
                                     <label for="seeing" class="form-label">Seeing</label>
                                     <input class="inputAjax form-control" type="number" id="seeing" name="seeing" step="0.01">
                                 </div>
 
-                                <div class="col-12 col-sm-6 col-lg-4 form-order-lg-13" id="areaDiv" style="display: none;">
+                                <div class="col-12 col-sm-6 col-lg-4 form-order-lg-15" id="areaDiv" style="display: none;">
                                     <label for="area" class="form-label">Area</label>
                                     <input class="inputAjax form-control" type="number" id="area" name="area">
                                 </div>
 
-                                <div class="col-12 col-sm-6 col-lg-4 form-order-lg-14">
+                                <div class="col-12 col-sm-6 col-lg-4 form-order-lg-16">
                                     <label for="redz" class="form-label">Redshift </label>
                                     <input class="inputAjax form-control" type="number" id="redz" name="redz" step="0.01">
                                 </div>
 
-                                <div class="col-12 col-sm-6 col-lg-4 form-order-lg-7">
+                                <div class="col-12 col-sm-6 col-lg-4 form-order-lg-9">
                                     <label for="breadth" class="form-label">Delta\lambda</label>
                                     <input class="inputAjax form-control" type="number" id="breadth" name="breadth" value="0">
                                 </div>
 
-                                <div class="col-12 col-sm-6 col-lg-4 form-order-lg-15">
+                                <div class="col-12 col-sm-6 col-lg-4 form-order-lg-17">
                                     <label for="fwhmA" class="form-label">FwhmA</label>
                                     <input class="inputAjax form-control" type="number" id="fwhmA" name="fwhmA">
                                 </div>

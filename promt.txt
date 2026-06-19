@@ -1,8 +1,14 @@
 Trabajar como un programador devops senior.
 No realices ninguna prueba.
 
-La indentación no funcion.
-Cambio de planes.
-Crea un metodo en UiController el cual controle el texto resumen.
-Este darle la indentación necesaria.
-Modifica el html en esa parte en concreto si lo necesitas.
+Perfecto ahora en cuanto a la liena del flux type y flux valual.
+1. Vamos a añadir dos campos al formulario más los cuales van a estar en la misma liena.
+2. De forma que la fila se vera asi:
+    2.1. Flux type 
+    2.2. Si se selcciona "continuum" aparece un select con "mag" or "Flambda"
+    2.3 Flux value
+    2.4 En el caso de selccionar "mag" se pedira el filtro. EL cual sera un select con 5 variables: "u","g","r","i","z".
+
+De forma que si selecciona "emline" no aparecen los nuevos select.
+
+Lo del los nuevos campos son para implementar nueva funcionalidad en el calculo de la calculadora por tando dejalo preparado para mandar al back pero sin que mande nada demomento.
