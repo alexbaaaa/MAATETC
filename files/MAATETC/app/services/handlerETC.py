@@ -1,7 +1,8 @@
 from flask import request, jsonify
 import io, base64
+import traceback
 from dataclasses import dataclass
-from app.services.etc.maatetc_gui import run_etc
+from app.services.etc.ETC import run_etc, getgrating
 
 @dataclass
 class HandlerETC:
@@ -14,28 +15,63 @@ class HandlerETC:
         return data
     @staticmethod
     def runEtc(values):
-        text_elem = Dummy()
+        try:
+            text_elem = Dummy()
 
-        fig, text_elem = run_etc(values, text_elem, None)
+            fig, text_elem = run_etc(values, text_elem, None)
 
-        buf = io.BytesIO()
-        fig.savefig(buf, format='png')
-        buf.seek(0)
+            buf = io.BytesIO()
+            fig.savefig(buf, format='png')
+            buf.seek(0)
 
-        img_base64 = base64.b64encode(buf.read()).decode('utf-8')
-        buf.close()
-        resultJson = {
-            "imagen": img_base64,
-            "text" : text_elem.value
-        }
-        return resultJson
+            img_base64 = base64.b64encode(buf.read()).decode('utf-8')
+            buf.close()
+            resultJson = {
+                "success": True,
+                "imagen": img_base64,
+                "text" : text_elem.value
+            }
+            if text_elem.result_file:
+                resultJson["resultFile"] = {
+                    "filename": text_elem.result_filename,
+                    "content": text_elem.result_file
+                }
+            return resultJson
+        except Exception:
+            traceback.print_exc()
+            return {
+                "success": False,
+                "imagen": "",
+                "text": "The selected values cannot produce a valid graph. Please adjust the input parameters."
+            }
+    @staticmethod
+    def getGrating():
+        gratingsArrays = ['R300B','R300R','R500B','R500R','R1000B','R1000R','R2000B','R2500U','R2500V','R2500R','R2500I']
+        gratingsArrayJson = []
+        for name in gratingsArrays:
+            gratings = getgrating(name)
+            json = {
+                " name" : name, 
+                'grating' : [gratings[0][0], gratings[0][-1]],
+                'dispersion' : float(gratings[2])
+            }
+            gratingsArrayJson.append(json)
+        return gratingsArrayJson
+
+    
     
 #Esta clase la estrere mas adelante
 class Dummy:
     def __init__(self):
         self.value = ""
+        self.result_filename = ""
+        self.result_file = ""
 
     def update(self, value):
         self.value = value
     def to_dict(self):
-        return {"value": self.value}
+        return {
+            "value": self.value,
+            "result_filename": self.result_filename,
+            "result_file": self.result_file
+        }

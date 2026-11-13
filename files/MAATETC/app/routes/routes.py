@@ -16,17 +16,14 @@ def index():
 def compute():
     return maincontroller.compute_page()
 
+@bp.route('/guide')
+def guide():
+    return maincontroller.guide_page()
+
 @bp.route('/etc', methods=['POST'])
 def etc():
     return etcController.getJSON()
 
-
-
-# Rutas de pruebas
-@bp.route('/test', methods=['POST'])
-def test():
-    return maincontroller.test_page()
-
-@bp.route('/testAjax', methods=['POST'])
-def ajax():
-    return maincontroller.test_ajax()
+@bp.route('/gratings', methods=['GET'])
+def gratings():
+    return etcController.getGratings()

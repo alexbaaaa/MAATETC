@@ -8,3 +8,7 @@ class EtcController:
     def getJSON(self):
         data = HandlerETC.runEtc(request.get_json())
         return jsonify(data)
+    
+    def getGratings(self):
+        gratings = HandlerETC.getGrating()
+        return jsonify(gratings)
