@@ -27,14 +27,3 @@ def etc():
 @bp.route('/gratings', methods=['GET'])
 def gratings():
     return etcController.getGratings()
-
-
-
-# Rutas de pruebas
-@bp.route('/test', methods=['POST'])
-def test():
-    return maincontroller.test_page()
-
-@bp.route('/testAjax', methods=['POST'])
-def ajax():
-    return maincontroller.test_ajax()

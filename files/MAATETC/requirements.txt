@@ -1,0 +1,7 @@
+flask>=3.0,<4
+python-dotenv>=1.0
+gunicorn>=22.0
+numpy>=1.26
+scipy>=1.11
+matplotlib>=3.8
+astropy>=6.0

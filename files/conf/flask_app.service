@@ -1,12 +1,14 @@
 [Unit]
-Description=flask app service - App con flask y Gunicorn
+Description=MAAT ETC - Flask app served by Gunicorn
 After=network.target
+
 [Service]
 User=vagrant
 Group=www-data
-Environment="PATH=/home/vagrant/.local/share/virtualenvs/MAATETC-6eznFNzq/bin/gunicorn"
 WorkingDirectory=/var/www/MAATETC
-ExecStart=/home/vagrant/.local/share/virtualenvs/MAATETC-6eznFNzq/bin/gunicorn --workers 4 --bind unix:/var/www/MAATETC/app.sock wsgi:app
+Environment="PATH=/var/www/MAATETC/venv/bin"
+ExecStart=/var/www/MAATETC/venv/bin/gunicorn --workers 4 --bind unix:/var/www/MAATETC/app.sock -m 007 wsgi:app
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target

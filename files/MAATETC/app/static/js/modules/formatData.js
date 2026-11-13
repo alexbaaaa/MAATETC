@@ -3,7 +3,7 @@ import { Validation } from './validation.js';
 class FormatData {
     constructor (uic) {
         this.uic = uic;
-        this.requestHandler = new RequestHandler(this.uic.printData);
+        this.requestHandler = new RequestHandler(this.uic.printData.bind(this.uic));
     }
 
     init(data) {
